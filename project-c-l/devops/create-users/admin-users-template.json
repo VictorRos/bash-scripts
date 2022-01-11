@@ -1,0 +1,21 @@
+[
+  {
+    "userPrincipalName": "admin-securityteam@__TENANT__.onmicrosoft.com",
+    "mail": "securityteam@cegid.com",
+    "givenName": "Admin",
+    "surname": "Security Team",
+    "role": "Global Administrator"
+  },
+  {
+    "userPrincipalName": "admin-sharepoint@__TENANT__.onmicrosoft.com",
+    "givenName": "Admin",
+    "surname": "SharePoint",
+    "role": "SharePoint Administrator"
+  },
+  {
+    "userPrincipalName": "admin-users@__TENANT__.onmicrosoft.com",
+    "givenName": "Admin",
+    "surname": "Users",
+    "role": "Users Administrator"
+  }
+]

@@ -1,0 +1,5 @@
+version:v1.0
+Name [displayName] Required,User name [userPrincipalName] Required,Initial password [passwordProfile] Required,Block sign in (Yes/No) [accountEnabled] Required,First name [givenName],Last name [surname],Usage location [usageLocation]
+"Admin SECURITY TEAM","admin-securityteam@sandboxloop.onmicrosoft.com","Loopsoftware2","TRUE","Admin","SECURITY TEAM","IM"
+"Admin SHAREPOINT","admin-sharepoint@sandboxloop.onmicrosoft.com","Loopsoftware2","TRUE","Admin","SHAREPOINT","IM"
+"Admin USERS","admin-users@sandboxloop.onmicrosoft.com","Loopsoftware2","TRUE","Admin","USERS","IM"

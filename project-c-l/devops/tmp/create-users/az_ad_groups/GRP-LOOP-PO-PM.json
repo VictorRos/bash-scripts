@@ -1,0 +1,82 @@
+[
+  {
+    "givenName": "Francoise",
+    "mail": "fsauzet@cegid.com",
+    "surname": "SAUZET",
+    "usageLocation": "FR",
+    "userPrincipalName": "fsauzet@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Christel",
+    "mail": "cchabot@cegid.com",
+    "surname": "CHABOT",
+    "usageLocation": "FR",
+    "userPrincipalName": "cchabot@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Olivier",
+    "mail": "OGUILLAUD@cegid.com",
+    "surname": "GUILLAUD",
+    "usageLocation": "FR",
+    "userPrincipalName": "OGUILLAUD@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Frederick",
+    "mail": "FMENOT@cegid.com",
+    "surname": "MENOT",
+    "usageLocation": "FR",
+    "userPrincipalName": "FMENOT@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Stephane",
+    "mail": "SLECAILLON@cegid.com",
+    "surname": "LECAILLON",
+    "usageLocation": "FR",
+    "userPrincipalName": "SLECAILLON@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Julien",
+    "mail": "jmaison@cegid.com",
+    "surname": "MAISON",
+    "usageLocation": "FR",
+    "userPrincipalName": "jmaison@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Nathalie",
+    "mail": "nzambou@cegid.com",
+    "surname": "ZAMBOU",
+    "usageLocation": "FR",
+    "userPrincipalName": "nzambou@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Cyril",
+    "mail": "cjouanneau@cegid.com",
+    "surname": "JOUANNEAU",
+    "usageLocation": "FR",
+    "userPrincipalName": "cjouanneau@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Sabrina",
+    "mail": "srabehi@cegid.com",
+    "surname": "RABEHI",
+    "usageLocation": "FR",
+    "userPrincipalName": "srabehi@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Marie-Anne",
+    "mail": "maroche@cegid.com",
+    "surname": "ROCHE",
+    "usageLocation": "FR",
+    "userPrincipalName": "maroche@cegid.com",
+    "profile": "5.1"
+  }
+]

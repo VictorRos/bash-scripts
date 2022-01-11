@@ -1,0 +1,165 @@
+# Default values for library-deployment.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+fullname: library-deployment
+
+context: production
+
+image:
+  repository:
+  tag:
+
+autoscaling:
+  # Autoscaling for the service?
+  enabled: false
+  keda:
+    # If keda is enabled, normal autoscaling is disabled
+    enabled: false
+    triggers:
+      # Autoscaling when CPU is above 75% of activity
+      - type: cpu
+        metadata:
+          type: Utilization
+          value: '75'
+      # Autoscaling when memory is above 80% of activity
+      - type: memory
+        metadata:
+          type: Utilization
+          value: '80'
+  # Normal autoscaling
+  hpa:
+    # Autoscaling when CPU is above 75% of activity
+    - type: Resource
+      name: cpu
+      value: 75
+    # Autoscaling when memory is above 80% of activity
+    - type: Resource
+      name: memory
+      value: 80
+
+service:
+  type: ClusterIP
+  # You can change the size of the array, it's dynamic
+  ports:
+    - name: http
+      targetPort: 9099
+      port: 9099
+      protocol: TCP
+
+ingress:
+  # Expose service? If yes, simply change it to "true"
+  enabled: false
+
+environment:
+  enabled: true
+  env:
+    enabled: false
+    # data:
+    #   - name: xxx
+    #     value: xxx
+    #   - name: xxx
+    #     valueFrom:
+    #       secretKeyRef:
+    #         name: xxx
+    #         key: xxx
+  internalConfigMap:
+    enabled: false
+    # data:
+    #   # Values must be string, number or boolean are not recognised!!!
+    #   BOOLEAN: 'true'
+    #   NUMBER: '25'
+    #   STRING: This is a string
+  externalConfigMap:
+    enabled: true
+    configMap:
+      - environment-variable
+  secrets:
+    enabled: false
+    # secret:
+    #   - name: library-deployment-config
+    # generic:
+    #   - kafka-credentials
+    #   - mongo-credentials
+
+# Prometheus object (do not remove it)
+prometheus: {}
+  # path: /__/metrics # For YPN-Express-Service. Default to /metrics
+  # port: <number> # Default to .targetPort from first defined ports in service.ports
+  # type: loop_prometheus
+
+probe:
+  startup:
+    failureThreshold: 6
+    initialDelaySeconds: 5
+    periodSeconds: 5
+    successThreshold: 1
+    timeoutSeconds: 10
+    httpGet:
+      port: http
+      scheme: HTTP
+      path: /health
+  liveness:
+    failureThreshold: 6
+    initialDelaySeconds: 5
+    periodSeconds: 5
+    successThreshold: 1
+    timeoutSeconds: 10
+    httpGet:
+      port: http
+      scheme: HTTP
+      path: /health
+  readiness:
+    failureThreshold: 6
+    initialDelaySeconds: 5
+    periodSeconds: 5
+    successThreshold: 1
+    timeoutSeconds: 10
+    httpGet:
+      port: http
+      scheme: HTTP
+      path: /ready
+
+# volumes:
+#   userConfig:
+#     secretName: user-config-library-deployment
+#     fileName: user-config.json
+#     mountPath: /app/yupana/config/
+#   security:
+#     secretName: security
+#     mountPath: /app/yupana/bin/security/
+#   certificat:
+#     secretName: cert
+#     mountPath: /app/yupana/bin/cert/
+
+# startCommand:
+#   - node
+#   - /app/yupana/bin/service.js
+
+resources:
+  limits:
+    cpu: 250m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+
+tolerations:
+  - effect: NoSchedule
+    key: kubernetes.azure.com/scalesetpriority
+    operator: Equal
+    value: spot
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+          - key: usage
+            operator: In
+            values:
+              - loop
+          - key: profile
+            operator: In
+            values:
+              - general

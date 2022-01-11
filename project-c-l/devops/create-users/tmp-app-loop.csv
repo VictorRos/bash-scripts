@@ -1,0 +1,5 @@
+identifiant	prenom	nom	email	login	adresse_pays	langue	actif	groupeDeTravail	signature_emailSignature
+-- Utilisateur autre
+<ID>	<FIRSTNAME>	<LASTNAME>	<ID>@<TENANT>.onmicrosoft.com	<ID>@<TENANT>.onmicrosoft.com	FRANCE	français	true	[LOOP-DEFAUT]	<ID>@<TENANT>.onmicrosoft.com
+-- Utilisateur 5.1 (LOOP-GESTION-DES-DROITS en plus)
+<ID>	<FIRSTNAME>	<LASTNAME>	<ID>@<TENANT>.onmicrosoft.com	<ID>@<TENANT>.onmicrosoft.com	FRANCE	français	true	[LOOP-GESTION-DES-DROITS]	<ID>@<TENANT>.onmicrosoft.com

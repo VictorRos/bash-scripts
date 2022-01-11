@@ -1,0 +1,98 @@
+# Default values for library-scaledJob.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+fullname: library-scaledJob
+
+context: production
+
+image:
+  repository:
+  tag:
+
+spec: {}
+
+autoscaling:
+  keda:
+    triggers:
+      # Autoscaling when CPU is above 75% of activity
+      - type: cpu
+        metadata:
+          type: Utilization
+          value: '75'
+      # Autoscaling when memory is above 80% of activity
+      - type: memory
+        metadata:
+          type: Utilization
+          value: '80'
+
+environment:
+  enabled: true
+  env:
+    enabled: false
+    # data:
+    #   - name: xxx
+    #     value: xxx
+    #   - name: xxx
+    #     valueFrom:
+    #       secretKeyRef:
+    #         name: xxx
+    #         key: xxx
+  internalConfigMap:
+    enabled: false
+    # data:
+    #   # Values must be string, number or boolean are not recognised!!!
+    #   BOOLEAN: 'true'
+    #   NUMBER: '25'
+    #   STRING: This is a string
+  externalConfigMap:
+    enabled: true
+    configMap:
+      - environment-variable
+  secrets:
+    enabled: false
+    # secret:
+    #   - name: library-scaledJob-config
+    # generic:
+    #   - kafka-credentials
+    #   - mongo-credentials
+
+volumes: {}
+  # userConfig:
+  #   secretName: user-config-library-scaledJob
+  #   fileName: user-config.json
+  #   mountPath: /app/yupana/config/
+  # security:
+  #   secretName: security
+  #   mountPath: /app/yupana/bin/security/
+  # certificat:
+  #   secretName: cert
+  #   mountPath: /app/yupana/bin/cert/
+
+startCommand: []
+  # - node
+  # - /app/yupana/bin/service.js
+
+resources:
+  limits:
+    cpu: 250m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+
+tolerations:
+  - effect: NoSchedule
+    key: kubernetes.azure.com/scalesetpriority
+    operator: Equal
+    value: spot
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+          - key: usage
+            operator: In
+            values:
+              - cron

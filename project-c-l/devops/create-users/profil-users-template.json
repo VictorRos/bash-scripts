@@ -1,0 +1,74 @@
+[
+  {
+    "id": "profil1-__TENANT__",
+    "userPrincipalName": "profil1@__TENANT__.onmicrosoft.com",
+    "givenName": "Profil 1.0",
+    "surname": "__DOMAIN_UPPER__",
+    "profile": "1.0",
+    "groupeDeTravail": "[LOOP-DEFAUT]"
+  },
+  {
+    "id": "profil2-__TENANT__",
+    "userPrincipalName": "profil2@__TENANT__.onmicrosoft.com",
+    "givenName": "Profil 2.0",
+    "surname": "__DOMAIN_UPPER__",
+    "profile": "2.0",
+    "groupeDeTravail": "[LOOP-DEFAUT]"
+  },
+  {
+    "id": "profil2.5-__TENANT__",
+    "userPrincipalName": "profil2.5@__TENANT__.onmicrosoft.com",
+    "givenName": "Profil 2.5",
+    "surname": "__DOMAIN_UPPER__",
+    "profile": "2.5",
+    "groupeDeTravail": "[LOOP-DEFAUT]"
+  },
+  {
+    "id": "profil3-__TENANT__",
+    "userPrincipalName": "profil3@__TENANT__.onmicrosoft.com",
+    "givenName": "Profil 3.0",
+    "surname": "__DOMAIN_UPPER__",
+    "profile": "3.0",
+    "groupeDeTravail": "[LOOP-DEFAUT]"
+  },
+  {
+    "id": "profil4-__TENANT__",
+    "userPrincipalName": "profil4@__TENANT__.onmicrosoft.com",
+    "givenName": "Profil 4.0",
+    "surname": "__DOMAIN_UPPER__",
+    "profile": "4.0",
+    "groupeDeTravail": "[LOOP-DEFAUT]"
+  },
+  {
+    "id": "profil4.1-__TENANT__",
+    "userPrincipalName": "profil4.1@__TENANT__.onmicrosoft.com",
+    "givenName": "Profil 4.1",
+    "surname": "__DOMAIN_UPPER__",
+    "profile": "4.1",
+    "groupeDeTravail": "[LOOP-DEFAUT]"
+  },
+  {
+    "id": "profil4.2-__TENANT__",
+    "userPrincipalName": "profil4.2@__TENANT__.onmicrosoft.com",
+    "givenName": "Profil 4.2",
+    "surname": "__DOMAIN_UPPER__",
+    "profile": "4.2",
+    "groupeDeTravail": "[LOOP-DEFAUT]"
+  },
+  {
+    "id": "profil5-__TENANT__",
+    "userPrincipalName": "profil5@__TENANT__.onmicrosoft.com",
+    "givenName": "Profil 5.0",
+    "surname": "__DOMAIN_UPPER__",
+    "profile": "5.0",
+    "groupeDeTravail": "[LOOP-GESTION-DES-DROITS]"
+  },
+  {
+    "id": "profil5.1-__TENANT__",
+    "userPrincipalName": "profil5.1@__TENANT__.onmicrosoft.com",
+    "givenName": "Profil 5.1",
+    "surname": "__DOMAIN_UPPER__",
+    "profile": "5.1",
+    "groupeDeTravail": "[LOOP-DEFAUT]"
+  }
+]

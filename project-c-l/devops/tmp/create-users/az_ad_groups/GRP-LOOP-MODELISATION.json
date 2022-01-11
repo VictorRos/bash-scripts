@@ -1,0 +1,42 @@
+[
+  {
+    "givenName": "Yihong",
+    "mail": "YLI@cegid.com",
+    "surname": "LI",
+    "usageLocation": "FR",
+    "userPrincipalName": "YLI@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Antoine",
+    "mail": "alau@cegid.com",
+    "surname": "LAU",
+    "usageLocation": "FR",
+    "userPrincipalName": "alau@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Gilles",
+    "mail": "gdangel@cegid.com",
+    "surname": "DANGEL",
+    "usageLocation": "FR",
+    "userPrincipalName": "gdangel@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Philippe",
+    "mail": "pancourt@cegid.com",
+    "surname": "ANCOURT",
+    "usageLocation": "FR",
+    "userPrincipalName": "pancourt@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Etienne",
+    "mail": "Crespel@cegid.com",
+    "surname": "CRESPEL",
+    "usageLocation": "FR",
+    "userPrincipalName": "Crespel@cegid.com",
+    "profile": "5.1"
+  }
+]

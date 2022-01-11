@@ -1,0 +1,82 @@
+[
+  {
+    "givenName": "Jean-Sebastien",
+    "mail": "jspelerin@cegid.com",
+    "surname": "PELERIN",
+    "usageLocation": "FR",
+    "userPrincipalName": "jspelerin@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Luke",
+    "mail": "lthompson@cegid.com",
+    "surname": "THOMPSON",
+    "usageLocation": "GB",
+    "userPrincipalName": "lthompson@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Sebastien",
+    "mail": "spavat@cegid.com",
+    "surname": "PAVAT",
+    "usageLocation": "FR",
+    "userPrincipalName": "spavat@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Odyssefs",
+    "mail": "okaloidas@cegid.com",
+    "surname": "KALOIDAS",
+    "usageLocation": "FR",
+    "userPrincipalName": "okaloidas@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Rahul",
+    "mail": "rjyala@cegid.com",
+    "surname": "Jyala",
+    "usageLocation": "FR",
+    "userPrincipalName": "rjyala@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Myles",
+    "mail": "mrankin@cegid.com",
+    "surname": "RANKIN",
+    "usageLocation": "FR",
+    "userPrincipalName": "mrankin@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Anu",
+    "mail": "abindlish@cegid.com",
+    "surname": "BINDLISH",
+    "usageLocation": "FR",
+    "userPrincipalName": "abindlish@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Thomas",
+    "mail": "tbaudis@cegid.com",
+    "surname": "BAUDIS",
+    "usageLocation": "FR",
+    "userPrincipalName": "tbaudis@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Amine",
+    "mail": "hallama@cegid.com",
+    "surname": "HALLAM",
+    "usageLocation": "FR",
+    "userPrincipalName": "hallama@cegid.com",
+    "profile": "5.1"
+  },
+  {
+    "givenName": "Wissam",
+    "mail": "waljurdi@cegid.com",
+    "surname": "AL JURDI",
+    "usageLocation": "FR",
+    "userPrincipalName": "waljurdi@cegid.com",
+    "profile": "5.1"
+  }
+]
