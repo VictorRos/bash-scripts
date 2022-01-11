@@ -1,0 +1,72 @@
+#!/usr/bin/env zsh
+#   _________  _   _ ____   ____ 
+#  |__  / ___|| | | |  _ \ / ___|
+#    / /\___ \| |_| | |_) | |    
+# _ / /_ ___) |  _  |  _ <| |___ 
+#(_)____|____/|_| |_|_| \_\\____|
+#
+
+# Path
+export PATH=/opt/ccloud-cli:$PATH
+export PATH=/Users/ros/Library/Python/2.7/bin:$PATH
+ 
+# Environment variables
+export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+export EDITOR=/usr/bin/vim
+
+# Grep with colors
+export GREP_COLOR=31
+alias grep='grep --color=auto'
+
+# Project variables
+export WORKSPACES=/Users/ros/workspaces
+export WORKSPACE_ADDON=$WORKSPACES/workspace-addon
+export WORKSPACE_COMPTA=$WORKSPACES/workspace-compta
+export WORKSPACE_DEVOPS=$WORKSPACES/workspace-devops
+export WORKSPACE_NPM=$WORKSPACES/workspace-npm
+export WORKSPACE_PAIE=$WORKSPACES/workspace-paie
+export WORKSPACE_PIA=$WORKSPACES/workspace-pia
+
+# Azure CLI
+export AZURE_DEVOPS_EXT_PAT='r4ngygsgdw75va5n7eg7f7fh6pclio7gqvic3f3dno4vqvq6rina'
+
+# NPM
+export NPM_TOKEN=$(cat ~/.npmrc | grep //cegid.jfrog.io/cegid/api/npm/all-npm/:_authToken= | cut -d "=" -f2)
+
+# K8s
+export KUBECONFIG=~/.kube/config
+
+# thefuck
+eval $(thefuck --alias)
+
+# z
+. /usr/local/etc/profile.d/z.sh
+
+# Alias
+
+## Shell
+alias ll='ls -hal'
+alias la='ls -A'
+alias lh='ls -ah'
+alias l='ls -CF'
+alias lll='ls -lh | less'
+alias llt='ls -altF'
+alias sh-755='find -name "*.sh" | xargs chmod 755'
+alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
+
+## Shortcuts
+alias d='docker compose'
+
+## K8s
+alias k8s-images='kubectl get pods -A -o json | jq -r ".items[].spec.containers[].image" | grep "^cegid*" | sort -u'
+alias k8s-registries='kubectl get pods -A -o json | jq -r ".items[].spec.containers[].image" | grep "^cegid*" | sed -rn "s/([^/]*)\/.*/\1/p" | sort -u'
+
+## Utils
+alias rm-fw-node-modules='find $WORKSPACE_COMETE -type d -name "node_modules" | grep -E "tools|Yupana-Framework" | xargs rm -rf'
+alias gcmr='git log --oneline --cherry-pick --right-only origin/releases...origin/master'
+
+## Projects
+alias nrc='npm run compile'
+alias nrcc='npm run clean'
+

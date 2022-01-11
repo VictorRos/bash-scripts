@@ -1,0 +1,71 @@
+#!/bin/bash
+
+# Azure CLI
+export AZURE_DEVOPS_EXT_PAT='r4ngygsgdw75va5n7eg7f7fh6pclio7gqvic3f3dno4vqvq6rina'
+
+# NPM
+export NPM_TOKEN=$(cat ~/.npmrc | grep //cegid.jfrog.io/cegid/api/npm/all-npm/:_authToken= | cut -d "=" -f2)
+
+# PATH
+export PATH="~/Library/Python/2.7/bin:$PATH"
+export PATH="/opt/ccloud-cli:$PATH"
+
+# PROMPT BASH
+source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
+PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(__git_ps1) \$ "
+
+# Environment variables
+export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+
+# Project variables
+export WORKSPACES=/Users/ros/workspaces
+export WORKSPACE_ADDON=$WORKSPACES/workspace-addon
+export WORKSPACE_COMPTA=$WORKSPACES/workspace-compta
+export WORKSPACE_DEVOPS=$WORKSPACES/workspace-devops
+export WORKSPACE_NPM=$WORKSPACES/workspace-npm
+export WORKSPACE_PAIE=$WORKSPACES/workspace-paie
+export WORKSPACE_PIA=$WORKSPACES/workspace-pia
+
+# K8s
+export KUBECONFIG=~/.kube/config
+# Setup autocomplete in bash into the current shell, bash-completion package should be installed first.
+[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+
+# thefuck
+eval $(thefuck --alias)
+
+# z
+. /usr/local/etc/profile.d/z.sh
+
+# Alias
+
+## Shell
+alias ll='ls -hal'
+alias la='ls -A'
+alias lh='ls -lh'
+alias l='ls -CF'
+alias llt='ls -altF'
+alias sh-755='find -name "*.sh" | xargs chmod 755'
+alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
+
+## Shortcuts
+alias d='docker compose'
+
+# K8s
+alias k8s-images='kubectl get pods -A -o json | jq -r ".items[].spec.containers[].image" | grep "^cegid*" | sort -u'
+alias k8s-registries='kubectl get pods -A -o json | jq -r ".items[].spec.containers[].image" | grep "^cegid*" | sed -rn "s/([^/]*)\/.*/\1/p" | sort -u'
+
+## Utils
+alias rm-fw-node-modules='find $WORKSPACE_COMETE -type d -name "node_modules" | grep -E "tools|Yupana-Framework" | xargs rm -rf'
+# alias git-refresh='find $WORKSPACE_COMETE -type d -depth 1 -exec bash -c '"'"'PROJECT_NAME=$(basename {}) ; cd {} ; echo -e "*****************************\n* REFRESH ${PROJECT_NAME}\n*****************************\n" ; git remote update origin --prune'"'"' ";"'
+alias gcmr='git log --oneline --cherry-pick --right-only origin/releases...origin/master'
+
+## Projects
+alias nrc='npm run compile'
+alias nrcc='npm run clean'
+alias nrg='npm run generate-sources'
+
+## Docker compose
+alias dcg='npm --prefix $DOCKER_COMPOSE_FILES_PATH/scripts/docker-compose-utils run generate -- --config=$DOCKER_COMPOSE_FILES_PATH/config.js'
+
