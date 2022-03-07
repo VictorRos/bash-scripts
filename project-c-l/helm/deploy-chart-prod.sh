@@ -31,7 +31,7 @@ SERVICE_NAME=$4
 REPOSITORY_DOCKER=$5
 # Tag composé de la version de Loop et du numéro de build (Ex: 4.17.1-20210118.1)
 TAG=$6
-# Version du Chart Helm à déployer (Ex: 0.1.9)
+# Version du Chart Helm à déployer (Ex: 1.0.9)
 CHART_VERSION=$7
 # Namespace où déployer (Ex: current)
 NAMESPACE=$8
@@ -40,6 +40,8 @@ NAMESPACE=$8
 helm repo add loop ${HELM_LOOP_REPO} \
   --username ${HELM_REPO_LOGIN} \
   --password ${HELM_REPO_PWD} \
+  --pass-credentials \
+  --force-update \
   --debug
 
 # Mise à jour du repo

@@ -25,7 +25,7 @@ LAST_BUILD_TAG_SHA=$(git rev-list -n 1 tags/last-build)
 # Tools
 ####################################################################################################
 yq() {
-  docker run --rm -i -v "${PWD}":/workdir mikefarah/yq "$@"
+  docker run --rm -v "${PWD}":/workdir mikefarah/yq:latest "$@"
 }
 
 ####################################################################################################
@@ -245,18 +245,18 @@ inc_version() {
   local patch=${parts[2]}
   # Handle major version
   if [ "${mode}" = "major" ]; then
-    major=$(("${major}" + 1))
+    major=$((major + 1))
     # Reset minor and patch
     minor=0
     patch=0
   # Handle minor version
   elif [ "${mode}" = "minor" ]; then
-    minor=$(("${minor}" + 1))
+    minor=$((minor + 1))
     # Reset patch
     patch=0
   # Handle patch version
   elif [ "${mode}" = "patch" ]; then
-    patch=$(("${patch}" + 1))
+    patch=$((patch + 1))
   fi
   echo "${major}.${minor}.${patch}"
 }

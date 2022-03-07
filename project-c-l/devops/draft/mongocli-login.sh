@@ -30,9 +30,9 @@ services_pia=(
 
 services_framework=(
   "events-service"
-  "frameworkfull"
+  "fw-loop"
   "publicapi"
-  "serverfunction"
+  "sf-loop"
   "ydbdata"
   "ydbdatadirect"
   "ydbutils"

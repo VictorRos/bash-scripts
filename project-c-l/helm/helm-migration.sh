@@ -87,8 +87,9 @@ for chart in "${charts[@]}"; do
     sed -i "" "/alias: template/d" "${chart}/Chart.yaml"
     echo -e "Update dependency name with ${new_typology}"
     sed -i "" "s/${TEMPLATE_MICROSERVICE}.*/${new_typology}/" "${chart}/Chart.yaml"
-    echo -e "Update dependency version to ^1.0.0"
-    sed -i "" "s/^....version: .*/    version: \^1.0.0/" "${chart}/Chart.yaml"
+    new_typology_version=$(get_chart_version "${new_typology}")
+    echo -e "Update dependency version to ^${new_typology_version}"
+    sed -i "" "s/^....version: .*/    version: \^${new_typology_version}/" "${chart}/Chart.yaml"
 
     ############### Helm override ################@
 
@@ -99,6 +100,28 @@ for chart in "${charts[@]}"; do
     cp -R .pipelines/scripts/helm-boiler-plates/test "${chart}"
     cp -R .pipelines/scripts/helm-boiler-plates/templates "${chart}"
     sed -i "" "s/__library__/${new_typology##"library-"}/" "${chart}/templates/manifest.yaml"
+
+    # Add specific autoscaling for test and integration if it is a library-deployment
+    if [ "${new_typology}" = "library-deployment" ]; then
+      maxReplicas=$(yq e '.autoscaling.maxReplicas' "${chart}/values.yaml")
+      # Determine maxReplicas for test and integration dependending on maxReplicas value in values.yaml
+      if [ "${maxReplicas}" = "null" ]; then
+        maxReplicasIntegration=1
+        maxReplicasTest=1
+      elif [ "${maxReplicas}" -eq 2 ]; then
+        maxReplicasIntegration=2
+        maxReplicasTest=2
+      else
+        maxReplicasIntegration=3
+        maxReplicasTest=2
+      fi
+
+      echo -e "Add specific autoscaling to integration/_common.yaml"
+      echo -e "\nautoscaling:\n  replicaCount: 1\n  minReplicas: 1\n  maxReplicas: ${maxReplicasIntegration}" >> "${chart}/integration/_common.yaml"
+
+      echo -e "Add specific autoscaling to test/_common.yaml"
+      echo -e "\nautoscaling:\n  replicaCount: 1\n  minReplicas: 1\n  maxReplicas: ${maxReplicasTest}" >> "${chart}/test/_common.yaml"
+    fi
 
     echo -e "Add dev resources to test/_common.yaml"
     echo "

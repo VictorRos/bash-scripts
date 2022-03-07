@@ -12,31 +12,33 @@ image:
 
 autoscaling:
   # Autoscaling for the service?
-  enabled: false
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 2
   keda:
     # If keda is enabled, normal autoscaling is disabled
     enabled: false
     triggers:
-      # Autoscaling when CPU is above 75% of activity
+      # Autoscaling when CPU is above 75% of activity (percent of the request CPU)
       - type: cpu
         metadata:
           type: Utilization
           value: '75'
-      # Autoscaling when memory is above 80% of activity
-      - type: memory
-        metadata:
-          type: Utilization
-          value: '80'
+      # Autoscaling when memory is above 80% of activity (percent of the request memory)
+      # - type: memory
+      #   metadata:
+      #     type: Utilization
+      #     value: '80'
   # Normal autoscaling
   hpa:
-    # Autoscaling when CPU is above 75% of activity
+    # Autoscaling when CPU is above 75% of activity (percent of the request CPU)
     - type: Resource
       name: cpu
       value: 75
-    # Autoscaling when memory is above 80% of activity
-    - type: Resource
-      name: memory
-      value: 80
+    # Autoscaling when memory is above 80% of activity (percent of the request memory)
+    # - type: Resource
+    #   name: memory
+    #   value: 80
 
 service:
   type: ClusterIP
@@ -65,11 +67,11 @@ environment:
     #         key: xxx
   internalConfigMap:
     enabled: false
-    # data:
-    #   # Values must be string, number or boolean are not recognised!!!
+    # Values must be string, number or boolean are not recognized!!!
     #   BOOLEAN: 'true'
     #   NUMBER: '25'
     #   STRING: This is a string
+    # data:
   externalConfigMap:
     enabled: true
     configMap:

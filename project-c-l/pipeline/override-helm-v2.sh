@@ -7,11 +7,9 @@ set -e # Exit on any error
 # CONTEXT
 # DOCKER_TAG
 # HOSTNAME
-# IS_BETA
 # IS_CRONJOB
 # IS_INTEGRATION
 # IS_NEW_CLUSTER
-# IS_PRODUCTION
 # IS_TEST
 # REPOSITORY_DOCKER
 # RESOURCE_CPU_LIMITS
@@ -30,40 +28,21 @@ if [ "${SYSTEM_DEBUG}" = "true" ]; then
   cat "charts/${SERVICE_NAME}/values.yaml"
 fi
 
-echo -e "IS_BETA: ${IS_BETA}"
 echo -e "IS_CRONJOB: ${IS_CRONJOB}"
 echo -e "IS_INTEGRATION: ${IS_INTEGRATION}"
 echo -e "IS_NEW_CLUSTER: ${IS_NEW_CLUSTER}"
-echo -e "IS_PRODUCTION: ${IS_PRODUCTION}"
 echo -e "IS_TEST: ${IS_TEST}\n"
-
-# Service fullname
-SERVICE_FULLNAME=${SERVICE_NAME}
-# Start TODO: Delete this part when we can stop renaming services
-if [ "${SERVICE_NAME}" = "frameworkfull" ]; then
-  SERVICE_FULLNAME=fw-loop
-elif [ "${SERVICE_NAME}" = "serverfunction" ]; then
-  SERVICE_FULLNAME=sf-loop
-fi
-# End TODO
 
 # Override context
 echo "
   template:
-    context: ${CONTEXT}
-    fullname: ${SERVICE_FULLNAME}" > "${AGENT_BUILD_DIRECTORY_PATH}/helm-overrides.yaml"
-
-# Docker image name to use (overrides "template.image.repository")
-TEMPLATE_IMAGE_REPOSITORY=${SERVICE_NAME}
-if [ "${SERVICE_NAME}" = "frameworkfull-slow" ]; then
-  TEMPLATE_IMAGE_REPOSITORY="frameworkfull"
-fi
+    context: ${CONTEXT}" > "${AGENT_BUILD_DIRECTORY_PATH}/helm-overrides.yaml"
 
 # Override image
 echo "
     image:
       tag: ${DOCKER_TAG}
-      repository: ${REPOSITORY_DOCKER}/${TEMPLATE_IMAGE_REPOSITORY}" >> "${AGENT_BUILD_DIRECTORY_PATH}/helm-overrides.yaml"
+      repository: ${REPOSITORY_DOCKER}/${SERVICE_NAME}" >> "${AGENT_BUILD_DIRECTORY_PATH}/helm-overrides.yaml"
 
 # Override spec
 if [ "${IS_CRONJOB}" = "true" ] && [ "${IS_TEST}" = "true" ]; then
@@ -78,59 +57,27 @@ if [ "${IS_TEST}" = "true" ]; then
     autoscaling:
       replicaCount: 1
       minReplicas: 1
-      maxReplicas: 1
+      maxReplicas: 2
       minBudgetReplicas: 0" >> "${AGENT_BUILD_DIRECTORY_PATH}/helm-overrides.yaml"
-elif [ "${IS_INTEGRATION}" = "true" ] || { [ "${IS_PRODUCTION}" = "true" ] && [ "${IS_BETA}" = "true" ]; }; then
+elif [ "${IS_INTEGRATION}" = "true" ]; then
   echo "
     autoscaling:
       replicaCount: 1
       minReplicas: 1
-      maxReplicas: 2
+      maxReplicas: 3
       minBudgetReplicas: 0" >> "${AGENT_BUILD_DIRECTORY_PATH}/helm-overrides.yaml"
 fi
 
 # Override ingress
-if [ "${IS_TEST}" = "true" ] || [ "${IS_INTEGRATION}" = "true" ] || { [ "${IS_PRODUCTION}" = "true" ] && [ "${IS_BETA}" = "true" ]; }; then
-  if [ "${SERVICE_NAME}" = "frameworkfull-slow" ]; then
-    echo "
+if [ "${IS_TEST}" = "true" ] || [ "${IS_INTEGRATION}" = "true" ]; then
+  echo "
     ingress:
       hosts:
         - hostname: ${HOSTNAME}
-          path: /YPND
-        - hostname: ${HOSTNAME}
-          path: /shared
-        - hostname: ${HOSTNAME}
-          path: /ws
-        - hostname: ${HOSTNAME}
-          path: /YPN/.*/.*/fetch
-        - hostname: ${HOSTNAME}
-          path: /YPN/.*/.*/AzureFileStorageEx/(download|upload)
-        # Les endpoints de cleacore gérés par frameworkfull-slow sont temporaires.
-        # Les équipes de PIA doivent faire le nécessaire pour que cleacore gère ses propres endpoints.
-        - hostname: ${HOSTNAME}
-          path: /YPN/.*/.*/cleacore/(generateCompanyFeedback|sendFeedback)
-        - hostname: ${HOSTNAME}
-          path: /YPN/.*/.*/cleaspwatcher/checkWebHookAndWatch
+          path: /([^/]+)/service/${SERVICE_NAME}/(.*)
       tls:
         - hosts:
-          - ${HOSTNAME}" >> "${AGENT_BUILD_DIRECTORY_PATH}/helm-overrides.yaml"
-  else
-    INGRESS_PATH="/([^/]+)/service/${SERVICE_NAME}/(.*)"
-    if [ "${SERVICE_NAME}" = "frameworkfull" ]; then
-      INGRESS_PATH="/"
-    elif [ "${SERVICE_NAME}" = "serverfunction" ]; then
-      INGRESS_PATH="/([^/]+)/service/sf-loop/(.*)"
-    fi
-
-    echo "
-    ingress:
-      hosts:
-        - hostname: ${HOSTNAME}
-          path: ${INGRESS_PATH}
-      tls:
-        - hosts:
-          - ${HOSTNAME}" >> "${AGENT_BUILD_DIRECTORY_PATH}/helm-overrides.yaml"
-  fi
+            - ${HOSTNAME}" >> "${AGENT_BUILD_DIRECTORY_PATH}/helm-overrides.yaml"
 fi
 
 # Override resources

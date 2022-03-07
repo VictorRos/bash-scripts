@@ -22,13 +22,16 @@ selectedKeyVaults=()
 ## download/upload regex
 
 help=0
+force=0
+description_secret=""
+
 ARGS=()
 
 while [ $# -gt 0 ]; do
   unset OPTIND
   unset OPTARG
 
-  while getopts hn:k:c:r:s:p:f options; do
+  while getopts hn:k:d:f:r:p options; do
     case ${options} in
       n)
         namespaces="${OPTARG}"
@@ -36,18 +39,15 @@ while [ $# -gt 0 ]; do
       k)
         keyVaults="${OPTARG}"
         ;;
-      # c)
-      #   context="${OPTARG}"
-      #   ;;
+      d)
+        description_secret="${OPTARG}"
+        ;;
       f)
         force=1
         ;;
       r)
         regex="${OPTARG}"
         ;;
-      # s)
-      #   suffix="${OPTARG}"
-      #   ;;
       p)
         prefix="${OPTARG}"
         ;;
@@ -137,7 +137,7 @@ fi
 select_key_vault "${namespaces}" "${keyVaults}"
 script_name=$(basename "${BASH_SOURCE[0]}")
 execution_date=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-description="Last updated by $(get_name_user) with ${script_name} at ${execution_date}"
+default_description="Last updated by $(get_name_user) with ${script_name} at ${execution_date}"
 
 ##########################################################################
 ########################### VAULT SECRET #################################
@@ -145,6 +145,12 @@ description="Last updated by $(get_name_user) with ${script_name} at ${execution
 if [ "${type}" = "vault-secret" ]; then
   for keyVault in "${selectedKeyVaults[@]}"; do
     echo -e "\n${DEEP_SKY_BLUE}Begin ${type}: ${keyVault}${NO_COLOR}\n"
+
+    description="${default_description}"
+    # Update default description with specific description
+    if [ "${description_secret}" != "" ]; then
+      description="${description_secret}"
+    fi
 
     # echo az keyvault secret set --vault-name "${keyVault}" --name "${name}" --value "${value}" --description "${description}"
     if az keyvault secret set --vault-name "${keyVault}" --name "${name}" --value "${value}" --description "${description}"; then
@@ -175,17 +181,30 @@ elif [ "${type}" = "kube-secret" ]; then
     echo -e "\n${DEEP_SKY_BLUE}Begin ${type}: ${keyVault}${NO_COLOR}"
 
     # Get namespaces from Key Vault's tags
-    namespaces=($(echo "${allKeyVaults}" | jq -r '.[] | select(.name | test("'"${keyVault}"'")) | .tags.namespace' | tr "," " "))
+    namespacesKeyVault=($(echo "${allKeyVaults}" | jq -r '.[] | select(.name | test("'"${keyVault}"'")) | .tags.namespace' | tr "," " "))
     # Get all secrets that begins with "${regex}"
     secretNames=($(az keyvault secret list --vault-name "${keyVault}" | jq -r '.[] | select(.name | test("^'"${regex}"'")) | .name'))
+
+    filteredNamespaces=()
+    # Filter namespaces present in Key Vault tag namespace and in selected namespaces option (-n)
+    if [ ${#namespaces[@]} -ne 0 ]; then
+      for namespace in "${namespacesKeyVault[@]}"; do
+        if [[ "${namespaces[*]}" == *"${namespace}"* ]]; then
+          filteredNamespaces+=("${namespace}")
+        fi
+      done
+    # No selected namespaces option (-n), take all namespaces in Key Vault tag namespace
+    else
+      filteredNamespaces=("${namespacesKeyVault[@]}")
+    fi
 
     # Check if secrets match the regex to avoid create an empty secret in K8s
     if [ ${#secretNames[@]} -ne 0 ]; then
       # Ask for namespaces if no tag namespace found
-      if [ "${namespaces[*]}" = "null" ] || [ "${namespaces[*]}" = "" ]; then
-        namespaces=()
+      if [ "${filteredNamespaces[*]}" = "null" ] || [ "${filteredNamespaces[*]}" = "" ]; then
+        filteredNamespaces=()
         echo -e "\n${YELLOW}You must add the \"namespace\" tag to the Key Vault ${keyVault}${NO_COLOR}\n"
-        read -r -p "Select the namespace where to create the secret: " -a input
+        read -r -p "Select namespaces where to create the secret (separated by spaces): " -a input
 
         for namespaceInput in "${input[@]}"; do
           case ${namespaceInput} in
@@ -195,13 +214,11 @@ elif [ "${type}" = "kube-secret" ]; then
               ;;
             *)
               # Add new element at the end of the array
-              namespaces[${#namespaces[@]}]="${namespaceInput}"
+              filteredNamespaces[${#filteredNamespaces[@]}]="${namespaceInput}"
               ;;
           esac
         done
       fi
-
-      echo -e "\n${PINK}Namespaces selected: ${#namespaces[*]} (${namespaces[*]})${NO_COLOR}"
 
       cmdArgs=()
       annotations=""
@@ -213,15 +230,21 @@ elif [ "${type}" = "kube-secret" ]; then
       # Get all existing namespaces in K8s cluster
       existingNamespacesStr=$(kubectl get namespace -o json | jq -r '[ .items[].metadata.name ] | join(" ")')
       # Build a filtered array namespaces
-      filteredNamespaces=()
-      for namespace in "${namespaces[@]}"; do
+      filteredNamespacesK8s=()
+      for namespace in "${filteredNamespaces[@]}"; do
         if [[ "${existingNamespacesStr}" == *"${namespace}"* ]]; then
-          filteredNamespaces+=("${namespace}")
+          filteredNamespacesK8s+=("${namespace}")
         fi
       done
 
+      echo -e "\n${PINK}Namespaces selected after filter: ${#filteredNamespacesK8s[*]} (${filteredNamespacesK8s[*]})${NO_COLOR}"
+
+      # Ask before doing a terrible mistake!
+      echo ""
+      confirm "Are you sure you want to create this secret in K8s on ${#filteredNamespacesK8s[@]} namespace(s) (${filteredNamespacesK8s[*]})? [y/N]"
+
       # Do nothing if no namespaces after filtering
-      if [ ${#filteredNamespaces[@]} -ne 0 ]; then
+      if [ ${#filteredNamespacesK8s[@]} -ne 0 ]; then
         # Download secrets
         for secretName in "${secretNames[@]}"; do
           echo -e "\tDownload secret from Key Vault: ${secretName}"
@@ -237,11 +260,13 @@ elif [ "${type}" = "kube-secret" ]; then
           # Build command's args with the secret and its value
           cmdArgs+=(--from-file="${secretNameCleanUPPER}=${KUBE_SECRET_DIR}/${secretName}")
           uri=$(az keyvault secret show --vault-name "${keyVault}" --name "${secretName}" --query=id)
-          annotations="${annotations}, \"uri-${secretName}\": ${uri}"
+          # Annotation keys are limited to 64 characters
+          name="uri-${secretName}"
+          annotations="${annotations}, \"${name:0:63}\": ${uri}"
         done
 
         # Create secret for all namespaces filtered for the current Key Vault
-        for namespace in "${filteredNamespaces[@]}"; do
+        for namespace in "${filteredNamespacesK8s[@]}"; do
           if [ "${force}" = "1" ]; then
             echo -e "\nkubectl create secret generic --save-config --dry-run=client ${kubeSecretName} -n ${namespace} ***** -o yaml | kubectl apply -f -"
             message=$(kubectl create secret generic --save-config --dry-run=client "${kubeSecretName}" -n "${namespace}" "${cmdArgs[@]}" -o yaml | kubectl apply -f - 2>&1)
@@ -304,12 +329,12 @@ elif [ "${type}" = "upload" ]; then
         for file in "${files[@]}"; do
           name="${file#"${KEY_VAULT_DIR}/${keyVault}/"}"
           echo -e "Creating secret ${name}...\n"
-          # echo az keyvault secret set --vault-name "${keyVault}" --name "${name}" --file "${file}" --description "${description}"
-          if az keyvault secret set --vault-name "${keyVault}" --name "${name}" --file "${file}" --description "${description}"; then
+          # echo az keyvault secret set --vault-name "${keyVault}" --name "${name}" --file "${file}" --description "${default_description}"
+          if az keyvault secret set --vault-name "${keyVault}" --name "${name}" --file "${file}" --description "${default_description}"; then
             echo -e "\n${LIME}Value inserted in Key Vault ${keyVault}${NO_COLOR}"
           else
             echo -e "${RED}Error with the cmd:\n${NO_COLOR}"
-            echo -e "\t${RED}az keyvault secret set --vault-name \"${keyVault}\" --name \"${name}\" --file \"${file}\" --description \"${description}\"${NO_COLOR}"
+            echo -e "\t${RED}az keyvault secret set --vault-name \"${keyVault}\" --name \"${name}\" --file \"${file}\" --description \"${default_description}\"${NO_COLOR}"
           fi
         done
       fi

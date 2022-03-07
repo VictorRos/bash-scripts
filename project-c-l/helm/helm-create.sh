@@ -57,9 +57,21 @@ info "Copy integration folder from helm-boiler-templates"
 rm -rf "${chart_name}/integration"
 cp -R "${__dirname}/helm-boiler-plates/integration" "${chart_name}"
 
+# Add specific autoscaling for test if it is a library-deployment
+if [ "${typology}" = "library-deployment" ]; then
+  info "Add specific autoscaling (integration)"
+  echo -e "\nautoscaling:\n  replicaCount: 1\n  minReplicas: 1\n  maxReplicas: 3" >> "${chart_name}/integration/_common.yaml"
+fi
+
 info "Copy test folder from helm-boiler-templates"
 rm -rf "${chart_name}/test"
 cp -R "${__dirname}/helm-boiler-plates/test" "${chart_name}"
+
+# Add specific autoscaling for test if it is a library-deployment
+if [ "${typology}" = "library-deployment" ]; then
+  info "Add specific autoscaling (test)"
+  echo -e "\nautoscaling:\n  replicaCount: 1\n  minReplicas: 1\n  maxReplicas: 2" >> "${chart_name}/test/_common.yaml"
+fi
 
 # Get typology version
 typology_version=$(get_chart_version "${typology}")
@@ -71,7 +83,7 @@ info "Adapt Chart.yaml"
 sed -i "" "s/^name: ${typology}$/name: ${chart_name}/" "${chart_name}/Chart.yaml"
 sed -i "" "s/^description: .*$/description: Helm chart ${chart_name} for Kubernetes/" "${chart_name}/Chart.yaml"
 sed -i "" "s/^type: library$/type: application/" "${chart_name}/Chart.yaml"
-sed -i "" "s/^version: .*$/version: 0.1.0/" "${chart_name}/Chart.yaml"
+sed -i "" "s/^version: .*$/version: 1.0.0/" "${chart_name}/Chart.yaml"
 sed -i "" "s/^appVersion: .*$/appVersion: 1.0.0/" "${chart_name}/Chart.yaml"
 # Update dependency
 sed -i "" "s/^\(....name: \).*$/\1${typology}/" "${chart_name}/Chart.yaml"
@@ -82,3 +94,16 @@ info "Adapt values.yaml"
 
 # Update file
 sed -i "" "s/${typology}/${chart_name}/g" ${chart_name}/values.yaml
+
+# Add Helm chart in pipeline build if not already added
+is_already_added=$(cat .pipelines/pipeline-build.yml | { grep -q "\- ${chart_name}" && echo true || echo false; })
+if [ "${is_already_added}" = "false" ]; then
+  yq eval '(.stages[1].jobs[2].parameters.charts += ["'${chart_name}'"]) | (.stages[1].jobs[2].parameters.charts |= sort_by(.))' .pipelines/pipeline-build.yml > .pipelines/pipeline-build-updated.yml
+
+  # Create a diff patch without spaces or blank lines
+  diff -U0 -w -b --ignore-blank-lines .pipelines/pipeline-build.yml .pipelines/pipeline-build-updated.yml > update-pipeline-build.diff || true
+  # Apply patch
+  patch .pipelines/pipeline-build.yml < update-pipeline-build.diff
+  # Remove temporary files
+  rm .pipelines/pipeline-build-updated.yml update-pipeline-build.diff
+fi

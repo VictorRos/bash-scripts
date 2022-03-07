@@ -27,6 +27,7 @@ environments=(
   # "env-3d082" # dev-loop-compta-preprod
   # "env-7dzyp" # dev-loop-compta-tnr
   # "env-g52qn" # dev-loop-deployment-test
+  # "env-p2nw5" # dev-loop-modelisation
   # "env-vk97n" # dev-loop-testenv001
   # "env-9dok5" # dev-loop-testenv002
   # "env-jr25w" # dev-loop-testenv003
@@ -45,6 +46,7 @@ clusters=(
   # "lkc-2n6g1" # dev-loop-compta-preprod
   # "lkc-8p6rq" # dev-loop-compta-tnr
   # "lkc-nq3gd" # dev-loop-deployment-test
+  # "lkc-qoyj7" # dev-loop-modelisation
   # "lkc-7g982" # dev-loop-testenv001
   # "lkc-pp1vy" # dev-loop-testenv002
   # "lkc-x8zgq" # dev-loop-testenv003
@@ -63,18 +65,21 @@ clusters=(
 users=(
   # "pia_bk"
   # "julie-ops"
+  # "flow-dev"
   # "loop-dev"
 )
 # Description for cluster API Key
 clusterDescriptions=(
   # "PIA BK"
   # "Julie Ops ADO"
+  # "Flow DEV App"
   # "Loop DEV App"
 )
 # Description for schema registry API Key
 schemaRegistryDescriptions=(
   # "PIA BK"
   # "Julie Ops ADO"
+  # "Flow DEV App"
   # "Loop DEV App"
 )
 

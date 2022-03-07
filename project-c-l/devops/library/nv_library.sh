@@ -18,19 +18,23 @@ join_arr() {
 
 # Ignore technical namespaces
 export NV_NAMESPACES_TO_IGNORE=(
-  "default"
   "backup-victoria"
   "collectorforkubernetes"
+  "default"
   "dynatrace"
+  "jenkins"
   "keda"
   "kuard"
   "kube-node-lease"
   "kube-public"
   "kube-system"
+  "kubecost"
   "kuberhealthy"
   "memcached"
   "monitoring"
   "network"
+  "optimmo2"
+  "perf"
   "redis"
   "starboard"
   "weave"
@@ -150,7 +154,22 @@ select_key_vault() {
   allKeyVaults=$(az keyvault list | jq -r 'map(select(.name | test("SEC830700KVT"))) | sort_by(.name)')
   local keyVaultNames=($(echo "${allKeyVaults}" | jq -r '.[].name'))
 
-  if [ -z "${namespaces}" ] && [ -z "${keyVaults}" ]; then
+  # Select Key Vaults from Key Vaults option
+  if [ -n "${keyVaults}" ]; then
+    local keyVaultTestRegex
+    keyVaultTestRegex=$(echo "${keyVaults}" | tr "," "|")
+
+    selectedKeyVaults=($(echo "${allKeyVaults}" | jq -r '.[] | select(.name | test("'"${keyVaultTestRegex}"'")) | .name'))
+  # Select Key Vaults from namespaces option
+  elif [ -z "${keyVaults}" ] && [ -n "${namespaces}" ]; then
+    local namespaceTestRegex
+    namespaceTestRegex=$(echo "${namespaces}" | tr "," "|")
+
+    selectedKeyVaults=($(echo "${allKeyVaults}" | jq -r '.[] | select(.tags.namespace != null) | select(.tags.namespace | test("'"${namespaceTestRegex}"'")) | .name'))
+  fi
+
+  # If selected Key Vault list is empty, then ask user to select Key Vaults
+  if [ ${#selectedKeyVaults[*]} -eq 0 ]; then
     # Prepare Key Vault list for user interaction
     echo -e "${DODGER_BLUE}\nKey Vault list:${NO_COLOR}"
     local num=1
@@ -199,23 +218,6 @@ select_key_vault() {
         break
       fi
     done
-  else
-    # Select Key Vaults from namespaces option
-    if [ -z "${keyVaults}" ] && [ -n "${namespaces}" ]; then
-      local namespaceTestRegex
-      namespaceTestRegex=$(echo "${namespaces}" | tr "," "|")
-
-      selectedKeyVaults=($(echo "${allKeyVaults}" | jq -r '.[] | select(.tags.namespace != null) | select(.tags.namespace | test("'"${namespaceTestRegex}"'")) | .name'))
-    # Select Key Vaults from Key Vaults option
-    elif [ -z "${namespaces}" ] && [ -n "${keyVaults}" ]; then
-      local keyVaultTestRegex
-      keyVaultTestRegex=$(echo "${keyVaults}" | tr "," "|")
-
-      selectedKeyVaults=($(echo "${allKeyVaults}" | jq -r '.[] | select(.name | test("'"${keyVaultTestRegex}"'")) | .name'))
-    else
-      echo -e "${RED}Choose either \"Namespaces\" or \"Key Vaults\", not both of them.${NO_COLOR}"
-      exit 1
-    fi
   fi
 
   if [ ${#selectedKeyVaults[*]} -eq 0 ]; then
@@ -231,6 +233,8 @@ export -f error
 
 export -f check_cluster
 export -f check_subscription
-export -f join_arr
+export -f confirm
 export -f get_name_user
+export -f is_connect_with_az_cli
+export -f join_arr
 export -f select_key_vault

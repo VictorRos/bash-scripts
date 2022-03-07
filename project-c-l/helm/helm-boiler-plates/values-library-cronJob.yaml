@@ -26,11 +26,11 @@ environment:
     #         key: xxx
   internalConfigMap:
     enabled: false
-    # data:
-    #   # Values must be string, number or boolean are not recognised!!!
+    # Values must be string, number or boolean are not recognized!!!
     #   BOOLEAN: 'true'
     #   NUMBER: '25'
     #   STRING: This is a string
+    # data:
   externalConfigMap:
     enabled: true
     configMap:

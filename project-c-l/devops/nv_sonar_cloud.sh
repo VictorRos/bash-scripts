@@ -81,6 +81,7 @@ PROJECTS=(
   "cegid.loop.yupana.PiaUIGQL"
   "cegid.loop.yupana.publicApi"
   "cegid.loop.yupana.ypn-log-metrics"
+  "cegid.loop.yupana.ypn-mongo-maintenance"
 )
 
 ######## END FILL #######

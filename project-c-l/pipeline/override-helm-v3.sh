@@ -15,6 +15,7 @@ base_chart_path="${AGENT_BUILD_DIRECTORY_PATH}/charts/${SERVICE_NAME}"
 
 helm_upgrade_options=(
   --debug
+  --timeout 10m0s
   -f "${base_chart_path}/values.yaml"
 )
 
@@ -40,8 +41,8 @@ fi
 
 # Docker image name to use (overrides "image.repository")
 TEMPLATE_IMAGE_REPOSITORY=${SERVICE_NAME}
-if [ "${SERVICE_NAME}" = "frameworkfull-slow" ]; then
-  TEMPLATE_IMAGE_REPOSITORY="frameworkfull"
+if [ "${SERVICE_NAME}" = "fw-loop-slow" ]; then
+  TEMPLATE_IMAGE_REPOSITORY="fw-loop"
 fi
 
 # Override tag & repository

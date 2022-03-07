@@ -25,6 +25,7 @@ export WORKSPACE_COMPTA=$WORKSPACES/workspace-compta
 export WORKSPACE_DEVOPS=$WORKSPACES/workspace-devops
 export WORKSPACE_NPM=$WORKSPACES/workspace-npm
 export WORKSPACE_PAIE=$WORKSPACES/workspace-paie
+export WORKSPACE_PERSO=$WORKSPACES/workspace-perso
 export WORKSPACE_PIA=$WORKSPACES/workspace-pia
 
 # K8s
@@ -34,6 +35,7 @@ export KUBECONFIG=~/.kube/config
 
 # thefuck
 eval $(thefuck --alias)
+alias f='fuck'
 
 # z
 . /usr/local/etc/profile.d/z.sh
