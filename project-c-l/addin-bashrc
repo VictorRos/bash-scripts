@@ -68,3 +68,7 @@ alias nrg='npm run generate-sources'
 ## Docker compose
 alias dcg='npm --prefix ${DOCKER_COMPOSE_FILES_PATH}/scripts/docker-compose-utils run generate -- --config=${DOCKER_COMPOSE_FILES_PATH}/config.js'
 
+## Umbrella
+alias umbrella-start='sudo launchctl load /Library/LaunchDaemons/com.opendns.osx.RoamingClientConfigUpdater.plist'
+alias umbrella-stop='sudo launchctl unload /Library/LaunchDaemons/com.opendns.osx.RoamingClientConfigUpdater.plist'
+

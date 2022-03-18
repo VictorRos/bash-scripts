@@ -70,3 +70,7 @@ alias gcmr='git log --oneline --cherry-pick --right-only origin/releases...origi
 alias nrc='npm run compile'
 alias nrcc='npm run clean'
 
+## Umbrella
+alias umbrella-start='sudo launchctl load /Library/LaunchDaemons/com.opendns.osx.RoamingClientConfigUpdater.plist'
+alias umbrella-stop='sudo launchctl unload /Library/LaunchDaemons/com.opendns.osx.RoamingClientConfigUpdater.plist'
+
