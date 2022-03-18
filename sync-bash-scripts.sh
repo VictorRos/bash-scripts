@@ -2,11 +2,9 @@
 
 SOURCE_REPO_DEVOPS="${HOME}/workspaces/workspace-devops/Loop-DevOps/scripts/sh"
 SOURCE_REPO_CHARTS="${HOME}/workspaces/workspace-devops/charts/.pipelines/scripts"
-SOURCE_REPO_SCRIPTS="${HOME}/scripts"
 
 TARGET_REPO="${HOME}/workspaces/workspace-perso/bash-scripts"
 TARGET_REPO_PROJECT_C_L="${TARGET_REPO}/project-c-l"
-TARGET_REPO_PERSO="${TARGET_REPO}/perso"
 
 copy_files_project_c_l() {
   if [ -d "${SOURCE_REPO_DEVOPS}/devops" ] || \
@@ -51,17 +49,6 @@ copy_files_project_c_l() {
   fi
 }
 
-copy_files_perso() {
-  echo "Sync Perso"
-
-  if [ -d "${SOURCE_REPO_SCRIPTS}/bin" ]; then
-    cp -R "${SOURCE_REPO_SCRIPTS}/bin/." "${TARGET_REPO_PERSO}/bin"
-  fi
-  if [ -d "${SOURCE_REPO_SCRIPTS}/other" ]; then
-    cp -R "${SOURCE_REPO_SCRIPTS}/other/." "${TARGET_REPO_PERSO}/other"
-  fi
-}
-
 commit_changes() {
   git -C "${TARGET_REPO}" add -A
   git -C "${TARGET_REPO}" commit -m "Sync bash scripts at $(date "+%Y-%m-%d %H:%M:%S")"
@@ -70,7 +57,6 @@ commit_changes() {
 
 sync_bash_scripts() {
   copy_files_project_c_l
-  copy_files_perso
   commit_changes
 }
 
