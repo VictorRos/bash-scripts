@@ -7,7 +7,6 @@
 #
 
 # Path
-export PATH=/opt/ccloud-cli:$PATH
 export PATH=/Users/ros/Library/Python/2.7/bin:$PATH
  
 # Environment variables
@@ -22,10 +21,9 @@ alias grep='grep --color=auto'
 # Project variables
 export WORKSPACES=/Users/ros/workspaces
 export WORKSPACE_ADDON=$WORKSPACES/workspace-addon
-export WORKSPACE_COMPTA=$WORKSPACES/workspace-compta
+export WORKSPACE_LOOP=$WORKSPACES/workspace-loop
 export WORKSPACE_DEVOPS=$WORKSPACES/workspace-devops
 export WORKSPACE_NPM=$WORKSPACES/workspace-npm
-export WORKSPACE_PAIE=$WORKSPACES/workspace-paie
 export WORKSPACE_PERSO=$WORKSPACES/workspace-perso
 export WORKSPACE_PIA=$WORKSPACES/workspace-pia
 

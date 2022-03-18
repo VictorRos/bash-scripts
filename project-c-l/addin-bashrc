@@ -8,7 +8,6 @@ export NPM_TOKEN=$(cat ~/.npmrc | grep //cegid.jfrog.io/cegid/api/npm/all-npm/:_
 
 # PATH
 export PATH="~/Library/Python/2.7/bin:$PATH"
-export PATH="/opt/ccloud-cli:$PATH"
 
 # PROMPT BASH
 source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
@@ -21,10 +20,9 @@ export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 # Project variables
 export WORKSPACES=/Users/ros/workspaces
 export WORKSPACE_ADDON=$WORKSPACES/workspace-addon
-export WORKSPACE_COMPTA=$WORKSPACES/workspace-compta
+export WORKSPACE_LOOP=$WORKSPACES/workspace-loop
 export WORKSPACE_DEVOPS=$WORKSPACES/workspace-devops
 export WORKSPACE_NPM=$WORKSPACES/workspace-npm
-export WORKSPACE_PAIE=$WORKSPACES/workspace-paie
 export WORKSPACE_PERSO=$WORKSPACES/workspace-perso
 export WORKSPACE_PIA=$WORKSPACES/workspace-pia
 
@@ -60,7 +58,6 @@ alias k8s-registries='kubectl get pods -A -o json | jq -r ".items[].spec.contain
 
 ## Utils
 alias rm-fw-node-modules='find $WORKSPACE_COMETE -type d -name "node_modules" | grep -E "tools|Yupana-Framework" | xargs rm -rf'
-# alias git-refresh='find $WORKSPACE_COMETE -type d -depth 1 -exec bash -c '"'"'PROJECT_NAME=$(basename {}) ; cd {} ; echo -e "*****************************\n* REFRESH ${PROJECT_NAME}\n*****************************\n" ; git remote update origin --prune'"'"' ";"'
 alias gcmr='git log --oneline --cherry-pick --right-only origin/releases...origin/master'
 
 ## Projects
@@ -69,5 +66,5 @@ alias nrcc='npm run clean'
 alias nrg='npm run generate-sources'
 
 ## Docker compose
-alias dcg='npm --prefix $DOCKER_COMPOSE_FILES_PATH/scripts/docker-compose-utils run generate -- --config=$DOCKER_COMPOSE_FILES_PATH/config.js'
+alias dcg='npm --prefix ${DOCKER_COMPOSE_FILES_PATH}/scripts/docker-compose-utils run generate -- --config=${DOCKER_COMPOSE_FILES_PATH}/config.js'
 
