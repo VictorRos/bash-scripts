@@ -43,6 +43,7 @@ copy_files_project_c_l() {
 
 commit_changes() {
   git -C "${TARGET_REPO}" add -A
+  git -C "${TARGET_REPO}" status
   git -C "${TARGET_REPO}" commit -m "Sync bash scripts at $(date "+%Y-%m-%d %H:%M:%S")"
   git -C "${TARGET_REPO}" push
 }
