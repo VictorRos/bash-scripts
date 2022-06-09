@@ -18,12 +18,14 @@ copy_files_project_c_l() {
       echo "  Sync DevOps"
 
       if [ -d "${SOURCE_REPO_DEVOPS}/devops" ]; then
+        rm -rf "${TARGET_REPO_PROJECT_C_L}/devops"
         mkdir -p "${TARGET_REPO_PROJECT_C_L}/devops"
         cp -R "${SOURCE_REPO_DEVOPS}/devops/." "${TARGET_REPO_PROJECT_C_L}/devops"
         # Remove folder tmp
         rm -rf "${TARGET_REPO_PROJECT_C_L}/devops/tmp"
       fi
       if [ -d "${SOURCE_REPO_DEVOPS}/pipeline" ]; then
+        rm -rf "${TARGET_REPO_PROJECT_C_L}/pipeline"
         mkdir -p "${TARGET_REPO_PROJECT_C_L}/pipeline"
         cp -R "${SOURCE_REPO_DEVOPS}/pipeline/." "${TARGET_REPO_PROJECT_C_L}/pipeline"
       fi
@@ -32,6 +34,7 @@ copy_files_project_c_l() {
     # Copy charts scripts
     if [ -d "${SOURCE_REPO_CHARTS}" ]; then
       echo "  Sync Helm charts"
+      rm -rf "${TARGET_REPO_PROJECT_C_L}/helm"
       mkdir -p "${TARGET_REPO_PROJECT_C_L}/helm"
       cp -R "${SOURCE_REPO_CHARTS}/." "${TARGET_REPO_PROJECT_C_L}/helm"
     fi
