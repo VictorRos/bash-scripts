@@ -35,7 +35,7 @@
 # |-- ...
 
 update_remote() {
-  git -C $1 fetch --all --prune --prune-tags --tags
+  git -C $1 fetch --all --prune --prune-tags --tags --force
 }
 
 delete_all_local_branches_not_on_remote() {
@@ -68,13 +68,17 @@ for gitProjectPath in "${gitProjectsPath[@]}" ; do
   # Met à jour les branches distantes (nouvelles, supprimées) et les tags (nouveaux, supprimés)
   update_remote ${projectPath}
 
-  # Supprime les branches locales qui n'ont plus de référence sur le repository distant
-  delete_all_local_branches_not_on_remote ${projectPath}
-
   # Si la branche courrante n'existe plus sur le repository distant, on switch sur master
   if [ "$(is_current_branch_gone ${projectPath})" != "" ]; then
-    git -C ${projectPath} switch master
+    # Récupère la branche par défaut du repository distant
+    defaultBranch=$(git -C ${projectPath} remote show origin | sed -n '/HEAD branch/s/.*: //p')
+
+    echo "Git switch to branch ${defaultBranch}"
+    git -C ${projectPath} switch "${defaultBranch}"
   fi
+
+  # Supprime les branches locales qui n'ont plus de référence sur le repository distant
+  delete_all_local_branches_not_on_remote ${projectPath}
 
   # Récupère les derniers commits de la branche courante
   git -C ${projectPath} pull --rebase
