@@ -5,6 +5,9 @@
     "givenName": "Profil 1.0",
     "surname": "__DOMAIN_UPPER__",
     "profile": "1.0",
+    "telMobile": "0607080910",
+    "telFixe": "0405060708",
+    "roleOrga": "Chef d'entreprise 1.0",
     "groupeDeTravail": "[LOOP-DEFAUT]"
   },
   {
@@ -13,6 +16,9 @@
     "givenName": "Profil 2.0",
     "surname": "__DOMAIN_UPPER__",
     "profile": "2.0",
+    "telMobile": "0607080910",
+    "telFixe": "0405060708",
+    "roleOrga": "Assistant comptable 2.0",
     "groupeDeTravail": "[LOOP-DEFAUT]"
   },
   {
@@ -21,6 +27,9 @@
     "givenName": "Profil 2.5",
     "surname": "__DOMAIN_UPPER__",
     "profile": "2.5",
+    "telMobile": "0607080910",
+    "telFixe": "0405060708",
+    "roleOrga": "CAC 2.5",
     "groupeDeTravail": "[LOOP-DEFAUT]"
   },
   {
@@ -29,6 +38,9 @@
     "givenName": "Profil 3.0",
     "surname": "__DOMAIN_UPPER__",
     "profile": "3.0",
+    "telMobile": "0607080910",
+    "telFixe": "0405060708",
+    "roleOrga": "Collaborateur 3.0",
     "groupeDeTravail": "[LOOP-DEFAUT]"
   },
   {
@@ -37,6 +49,9 @@
     "givenName": "Profil 4.0",
     "surname": "__DOMAIN_UPPER__",
     "profile": "4.0",
+    "telMobile": "0607080910",
+    "telFixe": "0405060708",
+    "roleOrga": "Superviseur 4.0",
     "groupeDeTravail": "[LOOP-DEFAUT]"
   },
   {
@@ -45,6 +60,9 @@
     "givenName": "Profil 4.1",
     "surname": "__DOMAIN_UPPER__",
     "profile": "4.1",
+    "telMobile": "0607080910",
+    "telFixe": "0405060708",
+    "roleOrga": "",
     "groupeDeTravail": "[LOOP-DEFAUT]"
   },
   {
@@ -53,6 +71,9 @@
     "givenName": "Profil 4.2",
     "surname": "__DOMAIN_UPPER__",
     "profile": "4.2",
+    "telMobile": "0607080910",
+    "telFixe": "0405060708",
+    "roleOrga": "",
     "groupeDeTravail": "[LOOP-DEFAUT]"
   },
   {
@@ -61,7 +82,10 @@
     "givenName": "Profil 5.0",
     "surname": "__DOMAIN_UPPER__",
     "profile": "5.0",
-    "groupeDeTravail": "[LOOP-GESTION-DES-DROITS]"
+    "telMobile": "0607080910",
+    "telFixe": "0405060708",
+    "roleOrga": "Admin cabinet 5.0",
+    "groupeDeTravail": "[LOOP-DEFAUT],[LOOP-GESTION-DES-DROITS]"
   },
   {
     "id": "profil5.1-__TENANT__",
@@ -69,6 +93,9 @@
     "givenName": "Profil 5.1",
     "surname": "__DOMAIN_UPPER__",
     "profile": "5.1",
-    "groupeDeTravail": "[LOOP-DEFAUT]"
+    "telMobile": "0607080910",
+    "telFixe": "0405060708",
+    "roleOrga": "",
+    "groupeDeTravail": "[LOOP-DEFAUT],[LOOP-GESTION-DES-DROITS]"
   }
 ]

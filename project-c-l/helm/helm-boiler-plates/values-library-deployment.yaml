@@ -42,7 +42,6 @@ autoscaling:
 
 service:
   type: ClusterIP
-  # You can change the size of the array, it's dynamic
   ports:
     - name: http
       targetPort: 9099
@@ -67,7 +66,7 @@ environment:
     #         key: xxx
   internalConfigMap:
     enabled: false
-    # Values must be string, number or boolean are not recognized!!!
+    # Values must be string, number or boolean are not recognised!!!
     #   BOOLEAN: 'true'
     #   NUMBER: '25'
     #   STRING: This is a string

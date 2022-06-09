@@ -43,7 +43,6 @@ services_gi=(
   "customersubscription"
   "editionmanager"
   "gimanager"
-  "gireact"
   "loopkafkamanager"
   "office365manager"
   "loophubcollaboratif"

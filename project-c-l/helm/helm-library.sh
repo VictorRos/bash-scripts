@@ -108,7 +108,7 @@ is_a_chart() {
 # Usage: has_chart_been_updated <chart>
 has_chart_been_updated() {
   local chart=$1
-  local result=$(git diff "${CURRENT_BRANCH_SHA}" "${LAST_BUILD_TAG_SHA}" "${chart}")
+  local result=$(git diff "${LAST_BUILD_TAG_SHA}" "${CURRENT_BRANCH_SHA}" "${chart}")
 
   if [ "${result}" = "" ]; then echo false; else echo true; fi
 }
@@ -120,7 +120,7 @@ has_chart_been_updated() {
 # Usage: is_chart_version_updated <chart>
 is_chart_version_updated() {
   local chart=$1
-  local result=$(git diff "${CURRENT_BRANCH_SHA}" "${LAST_BUILD_TAG_SHA}" "${chart}/Chart.yaml" \
+  local result=$(git diff "${LAST_BUILD_TAG_SHA}" "${CURRENT_BRANCH_SHA}" "${chart}/Chart.yaml" \
     | { grep "version:" || true; })
 
   if [ "${result}" = "" ]; then echo false; else echo true; fi
@@ -131,7 +131,7 @@ is_chart_version_updated() {
 # NOTE: Files must be commited to have the git command works.
 # Usage: get_updated_files
 get_updated_files() {
-  git diff --name-only "${CURRENT_BRANCH_SHA}" "${LAST_BUILD_TAG_SHA}"
+  git diff --name-only "${LAST_BUILD_TAG_SHA}" "${CURRENT_BRANCH_SHA}"
 }
 
 # Get updated Helm charts.

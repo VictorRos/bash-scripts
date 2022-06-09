@@ -41,7 +41,7 @@ environment:
     #         key: xxx
   internalConfigMap:
     enabled: false
-    # Values must be string, number or boolean are not recognized!!!
+    # Values must be string, number or boolean are not recognised!!!
     #   BOOLEAN: 'true'
     #   NUMBER: '25'
     #   STRING: This is a string

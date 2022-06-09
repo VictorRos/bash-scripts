@@ -21,9 +21,16 @@ selectedKeyVaults=()
 ## context k8S
 ## download/upload regex
 
-help=0
+# With arguments
+key_vaults_str=""
+namespaces_str=""
+namespaces=()
+prefix=""
+regex=""
+# Without arguments
 force=0
-description_secret=""
+no_confirm=0
+help=0
 
 ARGS=()
 
@@ -31,28 +38,31 @@ while [ $# -gt 0 ]; do
   unset OPTIND
   unset OPTARG
 
-  while getopts hn:k:d:f:r:p options; do
+  while getopts k:n:p:r:fhy options; do
     case ${options} in
-      n)
-        namespaces="${OPTARG}"
-        ;;
+      # With arguments
       k)
-        keyVaults="${OPTARG}"
+        key_vaults_str="${OPTARG}"
         ;;
-      d)
-        description_secret="${OPTARG}"
-        ;;
-      f)
-        force=1
-        ;;
-      r)
-        regex="${OPTARG}"
+      n)
+        namespaces_str="${OPTARG}"
+        namespaces=($(echo "${namespaces_str}" | tr "," " "))
         ;;
       p)
         prefix="${OPTARG}"
         ;;
+      r)
+        regex="${OPTARG}"
+        ;;
+      # Without arguments
+      f)
+        force=1
+        ;;
       h)
         help=1
+        ;;
+      y)
+        no_confirm=1
         ;;
       *)
         echo -e "\n${YELLOW}Unsupported option ${OPTARG}${NO_COLOR}"
@@ -75,8 +85,8 @@ check_subscription
 check_cluster
 
 optionalText="${DEEP_SKY_BLUE}Theses OPTIONAL parameters can be added:${NO_COLOR}\n"
-optionalText+="\t${DEEP_SKY_BLUE}- \"-n namespace1,namespace2\": Select the keyvault associate to \"namespace1\" and \"namespace2\" (example: \"-n compta-test,test-gi\"). You can only specify namespace or keyvault.${NO_COLOR}\n"
-optionalText+="\t${DEEP_SKY_BLUE}- \"-k keyvault1,keyvault2\": Select the keyvault directly without asking you which one you want (example: \"-k SEC830700KVTD07-TEST-GI,SEC830700KVTD02-TEST\"). You can only specify namespace or keyvault. ${NO_COLOR}"
+optionalText+="\t${DEEP_SKY_BLUE}- \"-n namespace1,namespace2\": Select the keyvault associate to \"namespace1\" and \"namespace2\" (example: \"-n compta-test,iso-prod\"). You can only specify namespace or keyvault.${NO_COLOR}\n"
+optionalText+="\t${DEEP_SKY_BLUE}- \"-k keyvault1,keyvault2\": Select the keyvault directly without asking you which one you want (example: \"-k SEC830700KVTD02-TEST,SEC830700KVTD18-ISO-PROD\"). You can only specify namespace or keyvault. ${NO_COLOR}"
 
 ########################### CHECK PARAMS #################################
 if [ "${type}" = "kube-secret" ]; then
@@ -134,10 +144,10 @@ else
   exit 1
 fi
 
-select_key_vault "${namespaces}" "${keyVaults}"
+select_key_vault "${namespaces_str}" "${key_vaults_str}"
 script_name=$(basename "${BASH_SOURCE[0]}")
 execution_date=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-default_description="Last updated by $(get_name_user) with ${script_name} at ${execution_date}"
+description="Last updated by $(get_name_user) with ${script_name} at ${execution_date}"
 
 ##########################################################################
 ########################### VAULT SECRET #################################
@@ -145,12 +155,6 @@ default_description="Last updated by $(get_name_user) with ${script_name} at ${e
 if [ "${type}" = "vault-secret" ]; then
   for keyVault in "${selectedKeyVaults[@]}"; do
     echo -e "\n${DEEP_SKY_BLUE}Begin ${type}: ${keyVault}${NO_COLOR}\n"
-
-    description="${default_description}"
-    # Update default description with specific description
-    if [ "${description_secret}" != "" ]; then
-      description="${description_secret}"
-    fi
 
     # echo az keyvault secret set --vault-name "${keyVault}" --name "${name}" --value "${value}" --description "${description}"
     if az keyvault secret set --vault-name "${keyVault}" --name "${name}" --value "${value}" --description "${description}"; then
@@ -186,12 +190,14 @@ elif [ "${type}" = "kube-secret" ]; then
     secretNames=($(az keyvault secret list --vault-name "${keyVault}" | jq -r '.[] | select(.name | test("^'"${regex}"'")) | .name'))
 
     filteredNamespaces=()
-    # Filter namespaces present in Key Vault tag namespace and in selected namespaces option (-n)
+    # Filter namespaces present in Key Vault tag namespace against selected namespaces option (-n)
     if [ ${#namespaces[@]} -ne 0 ]; then
-      for namespace in "${namespacesKeyVault[@]}"; do
-        if [[ "${namespaces[*]}" == *"${namespace}"* ]]; then
-          filteredNamespaces+=("${namespace}")
-        fi
+      for namespaceKV in "${namespacesKeyVault[@]}"; do
+        for namespace in "${namespaces[@]}"; do
+          if [ "${namespaceKV}" = "${namespace}" ]; then
+            filteredNamespaces+=("${namespace}")
+          fi
+        done
       done
     # No selected namespaces option (-n), take all namespaces in Key Vault tag namespace
     else
@@ -228,23 +234,30 @@ elif [ "${type}" = "kube-secret" ]; then
       mkdir -p "${KUBE_SECRET_DIR}"
 
       # Get all existing namespaces in K8s cluster
-      existingNamespacesStr=$(kubectl get namespace -o json | jq -r '[ .items[].metadata.name ] | join(" ")')
+      existingNamespaces=($(kubectl get namespace -o json | jq -r '.items[].metadata.name'))
       # Build a filtered array namespaces
       filteredNamespacesK8s=()
-      for namespace in "${filteredNamespaces[@]}"; do
-        if [[ "${existingNamespacesStr}" == *"${namespace}"* ]]; then
-          filteredNamespacesK8s+=("${namespace}")
-        fi
+      for namespaceK8s in "${existingNamespaces[@]}"; do
+        for namespace in "${filteredNamespaces[@]}"; do
+          if [ "${namespaceK8s}" = "${namespace}" ]; then
+            filteredNamespacesK8s+=("${namespace}")
+          fi
+        done
       done
 
       echo -e "\n${PINK}Namespaces selected after filter: ${#filteredNamespacesK8s[*]} (${filteredNamespacesK8s[*]})${NO_COLOR}"
 
-      # Ask before doing a terrible mistake!
-      echo ""
-      confirm "Are you sure you want to create this secret in K8s on ${#filteredNamespacesK8s[@]} namespace(s) (${filteredNamespacesK8s[*]})? [y/N]"
-
       # Do nothing if no namespaces after filtering
       if [ ${#filteredNamespacesK8s[@]} -ne 0 ]; then
+        # No asking if no confirmation
+        if [ "${no_confirm}" -eq 0 ]; then
+          # Ask before doing a terrible mistake!
+          echo ""
+          confirm "Are you sure you want to create this secret in K8s on ${#filteredNamespacesK8s[@]} namespace(s) (${filteredNamespacesK8s[*]})? [y/N]"
+        else
+          echo -e "\n${PINK}Create secret(s) in K8s on ${#filteredNamespacesK8s[@]} namespace(s) (${filteredNamespacesK8s[*]})${NO_COLOR}\n"
+        fi
+
         # Download secrets
         for secretName in "${secretNames[@]}"; do
           echo -e "\tDownload secret from Key Vault: ${secretName}"
@@ -301,7 +314,7 @@ elif [ "${type}" = "kube-secret" ]; then
           fi
         done
       else
-        echo -e "\n${YELLOW}No namespace found after filtering to create secret in cluster.${NO_COLOR}"
+        echo -e "\n${YELLOW}No namespace found after filtering. Cannot create secret in cluster.${NO_COLOR}"
       fi
 
       # Delete temporary folder
@@ -329,12 +342,12 @@ elif [ "${type}" = "upload" ]; then
         for file in "${files[@]}"; do
           name="${file#"${KEY_VAULT_DIR}/${keyVault}/"}"
           echo -e "Creating secret ${name}...\n"
-          # echo az keyvault secret set --vault-name "${keyVault}" --name "${name}" --file "${file}" --description "${default_description}"
-          if az keyvault secret set --vault-name "${keyVault}" --name "${name}" --file "${file}" --description "${default_description}"; then
+          # echo az keyvault secret set --vault-name "${keyVault}" --name "${name}" --file "${file}" --description "${description}"
+          if az keyvault secret set --vault-name "${keyVault}" --name "${name}" --file "${file}" --description "${description}"; then
             echo -e "\n${LIME}Value inserted in Key Vault ${keyVault}${NO_COLOR}"
           else
             echo -e "${RED}Error with the cmd:\n${NO_COLOR}"
-            echo -e "\t${RED}az keyvault secret set --vault-name \"${keyVault}\" --name \"${name}\" --file \"${file}\" --description \"${default_description}\"${NO_COLOR}"
+            echo -e "\t${RED}az keyvault secret set --vault-name \"${keyVault}\" --name \"${name}\" --file \"${file}\" --description \"${description}\"${NO_COLOR}"
           fi
         done
       fi

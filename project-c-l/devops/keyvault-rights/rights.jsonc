@@ -1,0 +1,1429 @@
+// Groups:
+// - GRP-LOOP-DEV-OWNERS (SUPER DEVOPS)
+// - GRP-LOOP-DEV-CONTRIBUTORS
+// - GRP-LOOP-MANAGER
+// - GRP-LOOP-PO-PM
+// - GRP-LOOP-LEAD-DEV
+// - GRP-LOOP-DEV
+// - GRP-LOOP-BIGDATA
+// - GRP-LOOP-QA
+// - GRP-LOOP-MODELISATION
+// - GRP-LOOP-DOC
+// - GRP-LOOP-SAAS (SAAS TEAM)
+// - S830701BCHD01 (BCH DEV FOR DATABASE PREPARE)
+{
+  "groups": [
+    // GRP-LOOP-DEV-OWNERS (SUPER DEVOPS)
+    {
+      "name": "GRP-LOOP-DEV-OWNERS",
+      "id": "235a0752-cf64-4e5f-a468-fbe1a56f71a1",
+      "keyVaults": [
+        {
+          "name": "SEC830700KVTD01",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD01-INFRA",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD02-TEST",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD03",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD03-STABLE",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD04-TESTENV2",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD04-USERS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD05",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD05-TESTENV1",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD06",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD06-PIA-TEST",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD07-MLOPS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700AMLD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD08-FLOW",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD09-PREPROD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD10-TESTENV3",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD11-FW",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD12-FLOW2",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD13-FLOW2F",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD14-TNR",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD15-DEVOPS",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD16-COMMUN",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD17-MOD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD18-ISO-PROD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        }
+      ]
+    },
+    // GRP-LOOP-DEV-CONTRIBUTORS
+    {
+      "name": "GRP-LOOP-DEV-CONTRIBUTORS",
+      "id": "d91e28d7-f497-42ef-8507-cec5ff9e8ad5",
+      "keyVaults": [
+        {
+          "name": "SEC830700KVTD01",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD01-INFRA",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD02-TEST",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD03",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD03-STABLE",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD04-TESTENV2",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD04-USERS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD05",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD05-TESTENV1",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD06",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD06-PIA-TEST",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD07-MLOPS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700AMLD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD08-FLOW",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD09-PREPROD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD10-TESTENV3",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD11-FW",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD12-FLOW2",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD13-FLOW2F",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD14-TNR",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD15-DEVOPS",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD16-COMMUN",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD17-MOD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD18-ISO-PROD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        }
+      ]
+    },
+    // GRP-LOOP-MANAGER
+    {
+      "name": "GRP-LOOP-MANAGER",
+      "id": "5d88bb4f-8da7-40b3-880f-f5a83c8c1eca",
+      "keyVaults": [
+        {
+          "name": "SEC830700KVTD04-USERS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        }
+      ]
+    },
+    // GRP-LOOP-PO-PM
+    {
+      "name": "GRP-LOOP-PO-PM",
+      "id": "49f4c72d-1be1-45a3-81ba-540b089a99d2",
+      "keyVaults": [
+        {
+          "name": "SEC830700KVTD04-USERS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        }
+      ]
+    },
+    // GRP-LOOP-LEAD-DEV
+    {
+      "name": "GRP-LOOP-LEAD-DEV",
+      "id": "a802ea31-1e73-4d25-9a60-7c1861d782ff",
+      "keyVaults": [
+        {
+          "name": "SEC830700KVTD01",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD01-INFRA",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD02-TEST",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD03",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD03-STABLE",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD04-TESTENV2",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD04-USERS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD05",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD05-TESTENV1",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD06",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD06-PIA-TEST",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD07-MLOPS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700AMLD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD08-FLOW",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD09-PREPROD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD10-TESTENV3",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD11-FW",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD12-FLOW2",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD13-FLOW2F",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD14-TNR",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD15-DEVOPS",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD16-COMMUN",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD17-MOD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD18-ISO-PROD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        }
+      ]
+    },
+    // GRP-LOOP-DEV
+    {
+      "name": "GRP-LOOP-DEV",
+      "id": "30437f2b-72cd-40fc-b343-a7bb9cf99f1e",
+      "keyVaults": [
+        {
+          "name": "SEC830700KVTD01",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD01-INFRA",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD02-TEST",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD03",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD03-STABLE",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD04-TESTENV2",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD04-USERS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD05",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD05-TESTENV1",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD06",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD06-PIA-TEST",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD07-MLOPS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700AMLD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD08-FLOW",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD09-PREPROD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD10-TESTENV3",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD11-FW",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD12-FLOW2",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD13-FLOW2F",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD14-TNR",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD15-DEVOPS",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD16-COMMUN",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD17-MOD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD18-ISO-PROD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        }
+      ]
+    },
+    // GRP-LOOP-BIGDATA
+    {
+      "name": "GRP-LOOP-BIGDATA",
+      "id": "31767074-76e0-46ff-b1d3-fb8b6a1f09f2",
+      "keyVaults": [
+        {
+          "name": "SEC830700KVTD01",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD01-INFRA",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD02-TEST",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD03",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD03-STABLE",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD04-TESTENV2",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD04-USERS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD05",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD05-TESTENV1",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD06",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD06-PIA-TEST",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD07-MLOPS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700AMLD01",
+          "certificatePermissions": "all purge",
+          "keyPermissions": "all purge",
+          "secretPermissions": "all purge"
+        },
+        {
+          "name": "SEC830700KVTD08-FLOW",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD09-PREPROD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD10-TESTENV3",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD11-FW",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD12-FLOW2",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD13-FLOW2F",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD14-TNR",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD15-DEVOPS",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD16-COMMUN",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD17-MOD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD18-ISO-PROD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        }
+      ]
+    },
+    // GRP-LOOP-QA
+    {
+      "name": "GRP-LOOP-QA",
+      "id": "8b18640f-6ec8-43e9-9eec-4c1b2dd591b3",
+      "keyVaults": [
+        {
+          "name": "SEC830700KVTD04-USERS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        }
+      ]
+    },
+    // GRP-LOOP-MODELISATION
+    {
+      "name": "GRP-LOOP-MODELISATION",
+      "id": "365924ca-4d98-42c4-8e4a-11a59aba7041",
+      "keyVaults": [
+        {
+          "name": "SEC830700KVTD04-USERS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        }
+      ]
+    },
+    // GRP-LOOP-DOC
+    {
+      "name": "GRP-LOOP-DOC",
+      "id": "071a792c-04db-44ba-9ca1-75bdabb49521",
+      "keyVaults": [
+        {
+          "name": "SEC830700KVTD04-USERS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        }
+      ]
+    },
+    // GRP-LOOP-SAAS (SAAS TEAM)
+    {
+      "name": "GRP-LOOP-SAAS",
+      "id": "e1adef5a-dc0a-494e-893c-a2d53ab9a6d6",
+      "keyVaults": [
+        {
+          "name": "SEC830700KVTD01",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD01-INFRA",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD02-TEST",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD03",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD03-STABLE",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD04-TESTENV2",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD04-USERS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD05",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD05-TESTENV1",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD06",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD06-PIA-TEST",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD07-MLOPS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700AMLD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD08-FLOW",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD09-PREPROD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD10-TESTENV3",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD11-FW",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD12-FLOW2",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD13-FLOW2F",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD14-TNR",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD15-DEVOPS",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD16-COMMUN",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list"
+        },
+        {
+          "name": "SEC830700KVTD17-MOD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        },
+        {
+          "name": "SEC830700KVTD18-ISO-PROD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "get list",
+          "keyPermissions": "get list",
+          "secretPermissions": "get list set"
+        }
+      ]
+    },
+    // S830701BCHD01 (BCH DEV FOR DATABASE PREPARE)
+    {
+      "name": "S830701BCHD01",
+      "id": "ed40824e-0b24-4d9c-8384-98e871cbae9f",
+      "keyVaults": [
+        {
+          "name": "SEC830700KVTD01",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD01-INFRA",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD02-TEST",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD03",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD03-STABLE",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD04-TESTENV2",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD04-USERS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD05",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD05-TESTENV1",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD06",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD06-PIA-TEST",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD07-MLOPS",
+          "subscription": "SAAS-8307-DEV",
+          "resourceGroup": "RSG830700AMLD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD08-FLOW",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD09-PREPROD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD10-TESTENV3",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD11-FW",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD12-FLOW2",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD13-FLOW2F",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD14-TNR",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD15-DEVOPS",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD16-COMMUN",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD17-MOD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        },
+        {
+          "name": "SEC830700KVTD18-ISO-PROD",
+          "subscription": "App-Yupana",
+          "resourceGroup": "RSG830700PASD01",
+          "certificatePermissions": "",
+          "keyPermissions": "",
+          "secretPermissions": "get"
+        }
+      ]
+    }
+  ]
+}

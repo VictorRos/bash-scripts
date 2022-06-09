@@ -48,11 +48,11 @@ NV_SUBSCRIPTION=$(az account show | jq -r '.name')
 export NV_SUBSCRIPTION
 
 # Current cluster
-NV_CLUSTER=$(kubectl config current-context)
+NV_CLUSTER=$(kubectl config current-context || true)
 export NV_CLUSTER
 
 # Namespaces for current cluster
-NV_NAMESPACES=($(kubectl get namespace -o json | jq '[.items[].metadata.name] | map(select(test("'"${NV_NAMESPACES_TO_IGNORE_FOR_JQ}"'") == false))' | jq -r '.[]'))
+NV_NAMESPACES=($(kubectl get namespace -o json | jq '[.items[].metadata.name] | map(select(test("'"${NV_NAMESPACES_TO_IGNORE_FOR_JQ}"'") == false))' | jq -r '.[]' || true))
 export NV_NAMESPACES
 
 ################################################################################

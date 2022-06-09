@@ -8,7 +8,7 @@ SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
 
 source "${SCRIPT_DIR}/../library/nv_library.sh"
 
-RIGHTS_FILE="${SCRIPT_DIR}/rights.json"
+RIGHTS_FILE="${SCRIPT_DIR}/rights.jsonc"
 
 ###########################################  PARAMETERS  ###########################################
 
@@ -54,8 +54,8 @@ done
 # Show help and exit
 if [ "${help}" = "true" ]; then
   info "OPTIONAL parameters:"
-  info "    -g groupName1,groupName2 : Azure AD groups (example: -k SEC830700KVTD02-TEST,SEC830700KVTD07-TEST-GI)"
-  info "    -k keyVault1,keyVault2 : Key Vaults (example: -k SEC830700KVTD02-TEST,SEC830700KVTD07-TEST-GI)"
+  info "    -g groupName1,groupName2 : Azure AD groups (example: -k SEC830700KVTD02-TEST,SEC830700KVTD18-ISO-PROD)"
+  info "    -k keyVault1,keyVault2 : Key Vaults (example: -k SEC830700KVTD02-TEST,SEC830700KVTD18-ISO-PROD)"
   info "    -d : Dry run (do not run commands, just show logs)"
   info "    -h : Show help"
   exit 0
@@ -65,7 +65,8 @@ fi
 is_connect_with_az_cli
 
 # Encode object with base64 because bash split string on spaces, and objects contain spaces :'(
-groups=($(jq -r '.groups[] | @base64' "${RIGHTS_FILE}"))
+# Delete all lines that contains "// " because jq does not work with jsonc :'(
+groups=($(grep -v "// .*" "${RIGHTS_FILE}" | jq -r '.groups[] | @base64'))
 
 for group in "${groups[@]}"; do
   # Decode object

@@ -1,0 +1,13 @@
+## Environment variables
+
+# To access faster build directory
+export WORK=/media/sdc1/_work/
+
+# Bash completion
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

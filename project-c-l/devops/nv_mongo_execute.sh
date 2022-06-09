@@ -62,8 +62,8 @@ else
   echo -e "${RED}\t- \"File\": File path that contains the MongoDB query (example: _query.js)${NO_COLOR}"
   echo -e "${RED}\t- \"Secret name\": String to match secret name to get MongoDB connection string from Key Vault (example: mongo-credentials-mongo-uri-ypn-cache, mongo-credentials-mongo-uri-ypn-bigdata)${NO_COLOR}"
   echo -e "${DODGER_BLUE}Theses OPTIONAL parameters can be added:${NO_COLOR}"
-  echo -e "${DODGER_BLUE}\t- \"-n namespace1,namespace2\": Select the keyvault associate to \"namespace1\" and \"namespace2\" (example: \"-n compta-test,test-gi\"). You can only specify namespace or keyvault.${NO_COLOR}"
-  echo -e "${DODGER_BLUE}\t- \"-k keyvault1,keyvault2\": Select the keyvault directly without asking you which one you want (example: \"-k SEC830700KVTD07-TEST-GI,SEC830700KVTD02-TEST\"). You can only specify namespace or keyvault.${NO_COLOR}"
+  echo -e "${DODGER_BLUE}\t- \"-n namespace1,namespace2\": Select the keyvault associate to \"namespace1\" and \"namespace2\" (example: \"-n compta-test,iso-prod\"). You can only specify namespace or keyvault.${NO_COLOR}"
+  echo -e "${DODGER_BLUE}\t- \"-k keyvault1,keyvault2\": Select the keyvault directly without asking you which one you want (example: \"-k SEC830700KVTD02-TEST,SEC830700KVTD18-ISO-PROD\"). You can only specify namespace or keyvault.${NO_COLOR}"
   exit 1
 fi
 

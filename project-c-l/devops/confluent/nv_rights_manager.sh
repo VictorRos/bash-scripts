@@ -26,13 +26,12 @@ environments=(
   # "env-zknq0" # dev-loop-compta-stable
   # "env-3d082" # dev-loop-compta-preprod
   # "env-7dzyp" # dev-loop-compta-tnr
-  # "env-g52qn" # dev-loop-deployment-test
+  # "env-g52qn" # dev-loop-devops
   # "env-p2nw5" # dev-loop-modelisation
   # "env-vk97n" # dev-loop-testenv001
   # "env-9dok5" # dev-loop-testenv002
   # "env-jr25w" # dev-loop-testenv003
   # "env-v5mnn" # dev-loop-test-fw
-  # "env-r6grk" # dev-loop-test-gi
   # "env-8d717" # dev-loop-pia-test
   # "env-89kr7" # dev-loop-iso-prod
   # "env-dgrk1" # integration
@@ -45,13 +44,12 @@ clusters=(
   # "lkc-x8wnq" # dev-loop-compta-stable
   # "lkc-2n6g1" # dev-loop-compta-preprod
   # "lkc-8p6rq" # dev-loop-compta-tnr
-  # "lkc-nq3gd" # dev-loop-deployment-test
+  # "lkc-nq3gd" # dev-loop-devops
   # "lkc-qoyj7" # dev-loop-modelisation
   # "lkc-7g982" # dev-loop-testenv001
   # "lkc-pp1vy" # dev-loop-testenv002
   # "lkc-x8zgq" # dev-loop-testenv003
   # "lkc-k1q0m" # dev-loop-test-fw
-  # "lkc-rxo30" # dev-loop-test-gi
   # "lkc-02715" # dev-loop-pia-test
   # "lkc-00dx5" # dev-loop-iso-prod
   # "lkc-k622p" # integration

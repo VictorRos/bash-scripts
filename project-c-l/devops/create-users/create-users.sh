@@ -14,16 +14,16 @@ AZ_AD_GROUPS_DIR="${SCRIPT_DIR}/../tmp/${SCRIPT_NAME}/az_ad_groups"
 CSV_DIR="${SCRIPT_DIR}/../tmp/${SCRIPT_NAME}/csv"
 # Loop Azure AD Groups
 AZURE_AD_GROUPS=(
-  "GRP-LOOP-DEV"
   "GRP-LOOP-DEV-OWNERS"
-  "GRP-LOOP-DOC"
-  "GRP-LOOP-LEAD-DEV"
+  "GRP-LOOP-DEV-CONTRIBUTORS"
   "GRP-LOOP-MANAGER"
-  "GRP-LOOP-MODELISATION"
   "GRP-LOOP-PO-PM"
+  "GRP-LOOP-LEAD-DEV"
+  "GRP-LOOP-DEV"
+  "GRP-LOOP-BIGDATA"
   "GRP-LOOP-QA"
-  "GRP-PIA-DEV"
-  "GRP-YUPANA-DEV"
+  "GRP-LOOP-MODELISATION"
+  "GRP-LOOP-DOC"
 )
 
 source "${SCRIPT_DIR}/../library/nv_library.sh"
@@ -163,9 +163,12 @@ cleanup() {
 # get_users_from_group <group>
 get_users_from_group() {
   local profile=5.1
+  local groupeDeTravail="[LOOP-DEFAUT]"
+
   # Users from GRP-LOOP-DEV-OWNERS will have profile 6.0 (super admin)
   if [ "$1" = "GRP-LOOP-DEV-OWNERS" ]; then
     profile=6.0
+    groupeDeTravail="[LOOP-DEFAUT],[LOOP-GESTION-DES-DROITS]"
   fi
 
   az ad group member list --group "$1" --query '[].{
@@ -174,7 +177,10 @@ get_users_from_group() {
     givenName: givenName,
     surname: surname,
     usageLocation: usageLocation
-  }' | jq 'map(.profile = "'"${profile}"'")' > "${AZ_AD_GROUPS_DIR}/$1.json"
+  }' | jq 'map(
+    .profile = "'"${profile}"'" |
+    .groupeDeTravail = "'"${groupeDeTravail}"'"
+  )' > "${AZ_AD_GROUPS_DIR}/$1.json"
 }
 
 # Generates JSON files for each Azure AD groups.
@@ -234,6 +240,9 @@ add_users_properties() {
     .profile = (.profile // "3.0") |
     .language = "français" |
     .actif = "true" |
+    .telMobile = (.telMobile // "") |
+    .telFixe = (.telFixe // "") |
+    .roleOrga = (.roleOrga // "") |
     .groupeDeTravail = (.groupeDeTravail // "[LOOP-DEFAUT]")
   )'
 }
@@ -267,6 +276,30 @@ consolidate_data() {
   users=$(add_azure_ad_users_properties "${users}")
 
   echo "${users}"
+}
+
+# Filter users 'collaborateurs'.
+# Without profiles 1.0, 2.0 and 2.5
+# <users> : Users
+# filter_collaborateur <users>
+filter_collaborateur() {
+  local users=$1
+
+  echo "${users}" | jq 'map(
+    select(.profile | (contains("1.0") or contains("2.0") or contains("2.5")) | not)
+  )'
+}
+
+# Filter users 'interlocuteur'.
+# Only profiles 1.0, 2.0 and 2.5
+# <users> : Users
+# filter_interlocuteur <users>
+filter_interlocuteur() {
+  local users=$1
+
+  echo "${users}" | jq 'map(
+    select(.profile | (contains("1.0") or contains("2.0") or contains("2.5")))
+  )'
 }
 
 # Generates a CSV file for Azure AD users creation.
@@ -335,22 +368,24 @@ generate_csv_azure_ad_delete() {
   sed -i "" "s/__TENANT__/${tenant}/g" "${CSV_DIR}/${filename}"
 }
 
-# Generates a TSV file to add users in Loop.
+# Generates a TSV file to add users "collaborateur" in Loop.
+# Without profiles 1.0, 2.0 and 2.5
 # <users> : Users (JSON format)
 # <tenant> : Tenant
 # <domain> : Domain
-# generate_tsv_app_loop <users> <tenant> <domain>
-generate_tsv_app_loop() {
+# generate_tsv_app_loop_collaborateur <users> <tenant> <domain>
+generate_tsv_app_loop_collaborateur() {
   local users=$1
   local tenant=$2
   local domain=$3
 
   local domain_upper
   domain_upper=$(echo "${domain}" | tr "[:lower:]" "[:upper:]")
-  local filename="loop-users-${domain_upper}.tsv"
+  local filename="loop-users-collaborateur-${domain_upper}.tsv"
 
-  echo -e "Generate TSV file to add users in Loop (${filename})"
+  echo -e "Generate TSV file to add users 'collaborateur' in Loop (${filename})"
 
+  users=$(filter_collaborateur "${users}")
   users=$(consolidate_data "${users}" "${domain}")
 
   # Add TSV headers
@@ -358,6 +393,38 @@ generate_tsv_app_loop() {
 
   # Add TSV lines
   echo "${users}" | jq -r '["id","givenName","surname","mail","userPrincipalName","country","language","actif","profile","groupeDeTravail","mail"] as $headers | map([.[ $headers[] ]])[] | @tsv' >> "${CSV_DIR}/${filename}"
+
+  # Replace placeholders
+  sed -i "" "s/__DOMAIN__/${domain}/g" "${CSV_DIR}/${filename}"
+  sed -i "" "s/__DOMAIN_UPPER__/${domain_upper}/g" "${CSV_DIR}/${filename}"
+  sed -i "" "s/__TENANT__/${tenant}/g" "${CSV_DIR}/${filename}"
+}
+
+# Generates a TSV file to add users "interlocuteur" in Loop.
+# Only profiles 1.0, 2.0 and 2.5
+# <users> : Users (JSON format)
+# <tenant> : Tenant
+# <domain> : Domain
+# generate_tsv_app_loop_interlocuteur <users> <tenant> <domain>
+generate_tsv_app_loop_interlocuteur() {
+  local users=$1
+  local tenant=$2
+  local domain=$3
+
+  local domain_upper
+  domain_upper=$(echo "${domain}" | tr "[:lower:]" "[:upper:]")
+  local filename="loop-users-interlocuteur-${domain_upper}.tsv"
+
+  echo -e "Generate TSV file to add users 'interlocuteur' in Loop (${filename})"
+
+  users=$(filter_interlocuteur "${users}")
+  users=$(consolidate_data "${users}" "${domain}")
+
+  # Add TSV headers
+  echo -e "nom\tprenom\ttelMobile\ttelFixe\temail\troleOrga\tprofile\tadresse_pays\tactif" > "${CSV_DIR}/${filename}"
+
+  # Add TSV lines
+  echo "${users}" | jq -r '["surname","givenName","telMobile","telFixe","mail","roleOrga","profile","country","actif"] as $headers | map([.[ $headers[] ]])[] | @tsv' >> "${CSV_DIR}/${filename}"
 
   # Replace placeholders
   sed -i "" "s/__DOMAIN__/${domain}/g" "${CSV_DIR}/${filename}"
@@ -402,7 +469,8 @@ main() {
     for domain in "${domains[@]}"; do
       generate_csv_azure_ad_insert "${users}" "${tenant}" "${domain}"
       generate_csv_azure_ad_delete "${users}" "${tenant}" "${domain}"
-      generate_tsv_app_loop "${users}" "${tenant}" "${domain}"
+      generate_tsv_app_loop_collaborateur "${users}" "${tenant}" "${domain}"
+      generate_tsv_app_loop_interlocuteur "${users}" "${tenant}" "${domain}"
     done
   done
 
