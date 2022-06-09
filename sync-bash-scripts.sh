@@ -9,9 +9,7 @@ TARGET_REPO_PROJECT_C_L="${TARGET_REPO}/project-c-l"
 copy_files_project_c_l() {
   if [ -d "${SOURCE_REPO_DEVOPS}/devops" ] || \
     [ -d "${SOURCE_REPO_DEVOPS}/pipeline" ] || \
-    [ -d "${SOURCE_REPO_CHARTS}" ] || \
-    [ -e "${HOME}/addin-bashrc" ] || \
-    [ -e "${HOME}/addin-zshrc" ]; then
+    [ -d "${SOURCE_REPO_CHARTS}" ]; then
 
     echo "Sync Project C L"
 
@@ -36,15 +34,6 @@ copy_files_project_c_l() {
       echo "  Sync Helm charts"
       mkdir -p "${TARGET_REPO_PROJECT_C_L}/helm"
       cp -R "${SOURCE_REPO_CHARTS}/." "${TARGET_REPO_PROJECT_C_L}/helm"
-    fi
-
-    if [ -e "${HOME}/addin-bashrc" ]; then
-      echo "  Sync addin-bashrc"
-      cp -R "${HOME}/addin-bashrc" "${TARGET_REPO_PROJECT_C_L}"
-    fi
-    if [ -e "${HOME}/addin-zshrc" ]; then
-      echo "  Sync addin-zshrc"
-      cp -R "${HOME}/addin-zshrc" "${TARGET_REPO_PROJECT_C_L}"
     fi
   fi
 }
